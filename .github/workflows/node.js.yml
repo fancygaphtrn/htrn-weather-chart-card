@@ -30,4 +30,15 @@ jobs:
 #        cache: 'npm'
     - run: npm install
     - run: npm run build rollup.config.mjs --if-present
-    #- run: npm test
+    - name: Check for modified files
+      id: git-check
+      run: echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
+
+    - name: Update changes in GitHub repository
+      if: steps.git-check.outputs.modified == 'true'
+      run:  |
+        git config --global user.name 'fancygaphtrn' 
+        git config --global user.email 'fancygaphtrn@gmail.com'
+        git add -A
+        git commit -m '[automated commit] add configs generated using jsonnet & GitHub workflow'
+        git push
