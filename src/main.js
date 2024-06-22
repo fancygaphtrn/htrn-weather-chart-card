@@ -174,11 +174,11 @@ subscribeForecastEvents() {
   const forecastType = this.config.forecast.type || 'daily';
   const isHourly = forecastType === 'hourly';
 
-  const feature = isHourly ? WeatherEntityFeature.FORECAST_HOURLY : WeatherEntityFeature.FORECAST_DAILY;
-  if (!this.supportsFeature(feature)) {
-    console.error(`Weather entity "${this.config.entity}" does not support ${isHourly ? 'hourly' : 'daily'} forecasts.`);
-    return;
-  }
+  //const feature = isHourly ? WeatherEntityFeature.FORECAST_HOURLY : WeatherEntityFeature.FORECAST_DAILY;
+  //if (!this.supportsFeature(feature)) {
+  //  console.error(`Weather entity "${this.config.entity}" does not support ${isHourly ? 'hourly' : 'daily'} forecasts.`);
+  //  return;
+  //}
 
   const callback = (event) => {
     this.forecasts = event.forecast;
@@ -188,7 +188,7 @@ subscribeForecastEvents() {
 
   this.forecastSubscriber = this._hass.connection.subscribeMessage(callback, {
     type: "weather/subscribe_forecast",
-    forecast_type: isHourly ? 'hourly' : 'daily',
+    forecast_type: this.config.forecast.type,
     entity_id: this.config.entity,
   });
 }
