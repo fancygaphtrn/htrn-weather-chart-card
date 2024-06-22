@@ -833,12 +833,6 @@ const weatherIconsNight = {
   'partlycloudy': 'partlycloudy-night',
 };
 
-const WeatherEntityFeature = {
-  FORECAST_DAILY: 1,
-  FORECAST_HOURLY: 2,
-  FORECAST_TWICE_DAILY: 4,
-};
-
 /**
  * @license
  * Copyright 2019 Google LLC
@@ -17958,14 +17952,13 @@ set hass(hass) {
 }
 
 subscribeForecastEvents() {
-  const forecastType = this.config.forecast.type || 'daily';
-  const isHourly = forecastType === 'hourly';
+  this.config.forecast.type || 'daily';
 
-  const feature = isHourly ? WeatherEntityFeature.FORECAST_HOURLY : WeatherEntityFeature.FORECAST_DAILY;
-  if (!this.supportsFeature(feature)) {
-    console.error(`Weather entity "${this.config.entity}" does not support ${isHourly ? 'hourly' : 'daily'} forecasts.`);
-    return;
-  }
+  //const feature = isHourly ? WeatherEntityFeature.FORECAST_HOURLY : WeatherEntityFeature.FORECAST_DAILY;
+  //if (!this.supportsFeature(feature)) {
+  //  console.error(`Weather entity "${this.config.entity}" does not support ${isHourly ? 'hourly' : 'daily'} forecasts.`);
+  //  return;
+  //}
 
   const callback = (event) => {
     this.forecasts = event.forecast;
@@ -17975,7 +17968,7 @@ subscribeForecastEvents() {
 
   this.forecastSubscriber = this._hass.connection.subscribeMessage(callback, {
     type: "weather/subscribe_forecast",
-    forecast_type: isHourly ? 'hourly' : 'daily',
+    forecast_type: this.config.forecast.type,
     entity_id: this.config.entity,
   });
 }
