@@ -669,8 +669,8 @@ drawChart({ config, language, weather, forecastItems } = this) {
         TempAxis: {
           position: 'left',
           beginAtZero: false,
-          suggestedMin: Math.min(...data.tempHigh, ...data.tempLow) - 5,
-          suggestedMax: Math.max(...data.tempHigh, ...data.tempLow) + 3,
+          suggestedMin: Math.min(...data.tempHigh.filter(v=>v!=null), ...data.tempLow.filter(v=>v!=null)) - 5,
+          suggestedMax: Math.max(...data.tempHigh.filter(v=>v!=null), ...data.tempLow.filter(v=>v!=null)) + 3,
           grid: {
             display: false,
             drawTicks: false,
