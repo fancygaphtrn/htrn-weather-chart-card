@@ -18540,22 +18540,41 @@ computeForecastData({ config, forecastItems } = this) {
         continue;
       }
     }
-    dateTime.push(d.datetime);
-    tempHigh.push(d.temperature);
-    if (typeof d.templow !== 'undefined') {
-      tempLow.push(d.templow);
-    }
-
-    if (roundTemp) {
-      tempHigh[i] = Math.round(tempHigh[i]);
+    if (this.weather.attributes.attribution == "Data from National Weather Service/NOAA" ) {
+	dateTime.push(d.datetime);
+	if (d.is_daytime || this.mode == 'hourly') {
+	  tempHigh.push(d.temperature);
+	  tempLow.push(null);
+	} else {
+	  tempHigh.push(null);
+	  tempLow.push(d.temperature);
+	}
+    } else {
+      dateTime.push(d.datetime);
+      tempHigh.push(d.temperature);
       if (typeof d.templow !== 'undefined') {
-        tempLow[i] = Math.round(tempLow[i]);
+        tempLow.push(d.templow);
+      }
+  
+      if (roundTemp) {
+        tempHigh[i] = Math.round(tempHigh[i]);
+        if (typeof d.templow !== 'undefined') {
+          tempLow[i] = Math.round(tempLow[i]);
+        }
       }
     }
     if (config.forecast.precipitation_type === 'probability') {
-      precip.push(d.precipitation_probability);
+      if (typeof d.precipitation_probability == 'number') {
+        precip.push(d.precipitation_probability);
+      } else {
+        precip.push(0);
+      }
     } else {
-      precip.push(d.precipitation);
+      if (typeof d.precipitation == 'number') {
+        precip.push(d.precipitation);
+      } else {
+        precip.push(0);
+      }
     }
   }
 
