@@ -76,6 +76,9 @@ static getStubConfig(hass, unusedEntities, allEntities) {
       humidity: {type: Object},
       pressure: {type: Object},
       windSpeed: {type: Object},
+      option1: {type: Object},
+      option2: {type: Object},
+      option3: {type: Object},
       windDirection: {type: Number},
       forecastChart: {type: Object},
       forecastItems: {type: Number},
@@ -163,6 +166,10 @@ set hass(hass) {
 
     this.feels_like = this.config.feels_like && hass.states[this.config.feels_like] ? hass.states[this.config.feels_like].state : this.weather.attributes.apparent_temperature;
     this.description = this.config.description && hass.states[this.config.description] ? hass.states[this.config.description].state : this.weather.attributes.description;
+
+    this.option1 = this.config.option1 in hass.states ? hass.states[this.config.option1] : null;
+    this.option2 = this.config.option2 in hass.states ? hass.states[this.config.option2] : null;
+    this.option3 = this.config.option3 in hass.states ? hass.states[this.config.option3] : null;
   }
 
   if (this.weather && !this.forecastSubscriber) {
@@ -1084,7 +1091,7 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
   `;
 }
 
-renderAttributes({ config, humidity, pressure, windSpeed, windDirection, sun, language, uv_index, dew_point, wind_gust_speed, visibility } = this) {
+renderAttributes({ config, humidity, pressure, windSpeed, windDirection, sun, language, uv_index, dew_point, wind_gust_speed, visibility, option1, option2, option3 } = this) {
   let dWindSpeed = windSpeed;
   let dPressure = pressure;
 
@@ -1167,9 +1174,10 @@ return html`
             <ha-icon icon="hass:thermometer-water"></ha-icon> ${dew_point} ${this.weather.attributes.temperature_unit} <br>
           ` : ''}
           ${showVisibility && visibility !== undefined ? html`
-            <ha-icon icon="hass:eye"></ha-icon> ${visibility} ${this.weather.attributes.visibility_unit}
+            <ha-icon icon="hass:eye"></ha-icon> ${visibility} ${this.weather.attributes.visibility_unit} <br>
           ` : ''}
-        </div>
+          ${ option1 ? x`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
+	</div>
       ` : ''}
       ${((showSun && sun !== undefined) || (typeof uv_index !== 'undefined' && uv_index !== undefined)) ? html`
         <div>
@@ -1183,7 +1191,8 @@ return html`
               ${this.renderSun({ sun, language })}
             </div>
           ` : ''}
-        </div>
+          ${ option2 ? x`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
+	</div>
       ` : ''}
       ${((showWindDirection && windDirection !== undefined) || (showWindSpeed && dWindSpeed !== undefined)) ? html`
         <div>
@@ -1196,9 +1205,10 @@ return html`
           ` : ''}
           ${showWindgustspeed && wind_gust_speed !== undefined ? html`
             <ha-icon icon="hass:weather-windy-variant"></ha-icon>
-            ${wind_gust_speed} ${this.ll('units')[this.unitSpeed]}
+            ${wind_gust_speed} ${this.ll('units')[this.unitSpeed]} <br>
           ` : ''}
-        </div>
+          ${ option3 ? x`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
+	</div>
       ` : ''}
     </div>
 `;
