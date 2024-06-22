@@ -14,10 +14,15 @@
 
 ## Installation
 
-### HACS
-
-This card is available in HACS (Home Assistant Community Store).
-HACS is a third party community store and is not included in Home Assistant out of the box.
+Download htrn-weather-card-chart to HA www directory
+Add to configuration.yaml
+```
+lovelace:
+  resources:
+    mode:yaml
+    - type: module
+      url: /local/htrn-weather-chart-card.js?ver=1.00
+```
 
 #### Configuration variables:
 
@@ -89,7 +94,7 @@ HACS is a third party community store and is not included in Home Assistant out 
 | show_wind_forecast   | boolean | true                     | Show or hide wind forecast on the card.                                                            |
 | round_temp           | boolean | false                    | Option for rounding the forecast temperatures                                                      |
 | style                | string  | style1                   | Change chart style, options: 'style1' or 'style2'                                                  |
-| type                 | string  | daily                    | Show daily or hourly forecast if available, options: 'daily' or 'hourly'                           |
+| type                 | string  | daily                    | Show daily or hourly forecast if available, options: 'twice_daily', 'daily' or 'hourly'                           |
 | number_of_forecasts  | number  | 0                        | Overrides the number of forecasts to display. Set to "0" for automatic mode.                       |
 | disable_animation    | boolean | false                    | Disable the chart animation.                                                                       |
 
