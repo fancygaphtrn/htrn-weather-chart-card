@@ -251,7 +251,7 @@ measureCard() {
     return;
   }
 
-  this.forecastItems = numberOfForecasts > 0 ? numberOfForecasts : Math.round(card.offsetWidth / (fontSize * 6));
+  this.forecastItems = numberOfForecasts > 0 ? numberOfForecasts : Math.round(card.offsetWidth / (fontSize * 2.5)-1);
   this.drawChart();
 }
 
@@ -916,6 +916,7 @@ updateChart({ forecasts, forecastChart } = this) {
           display: flex;
           align-items: center;
           margin: 1px;
+	  flex-wrap: wrap;
         }
         .wind-detail ha-icon {
           --mdc-icon-size: 15px;
