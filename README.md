@@ -75,6 +75,9 @@ lovelace:
 | units                 | object  | none                     | See [units of measurement](#units-of-measurement) for available options.                           |
 | locale                | string  | none                     | See [Supported languages](#Supported-languages) for available languages                            |
 | autoscroll            | boolean | false                    | Update the chart each hour, hiding prior forecast datapoints                                       |
+| option1               | string  | none                     | Optional entity_id to show in attributes panel                                                     |
+| option2               | string  | none                     | Optional entity_id to show in attributes panel                                                     |
+| option3               | string  | none                     | Optional entity_id to show in attributes panel                                                     |
 
 ##### Forecast options
 
