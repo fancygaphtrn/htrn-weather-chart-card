@@ -18956,7 +18956,7 @@ return x`
           ${showVisibility && visibility !== undefined ? x`
             <ha-icon icon="hass:eye"></ha-icon> ${visibility} ${this.weather.attributes.visibility_unit} <br>
           ` : ''}
-          ${ option1 ? x$1`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
+          ${ option1 ? x`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
 	</div>
       ` : ''}
       ${((showSun && sun !== undefined) || (typeof uv_index !== 'undefined' && uv_index !== undefined)) ? x`
@@ -18971,7 +18971,7 @@ return x`
               ${this.renderSun({ sun, language })}
             </div>
           ` : ''}
-          ${ option2 ? x$1`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
+          ${ option2 ? x`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
 	</div>
       ` : ''}
       ${((showWindDirection && windDirection !== undefined) || (showWindSpeed && dWindSpeed !== undefined)) ? x`
@@ -18987,7 +18987,7 @@ return x`
             <ha-icon icon="hass:weather-windy-variant"></ha-icon>
             ${wind_gust_speed} ${this.ll('units')[this.unitSpeed]} <br>
           ` : ''}
-          ${ option3 ? x$1`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
+          ${ option3 ? x`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
 	</div>
       ` : ''}
     </div>
