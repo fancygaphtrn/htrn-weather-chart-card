@@ -871,6 +871,9 @@ const ALT_SCHEMA = [
   { name: "dew_point", title: "Alternative dew pointsensor", selector: { entity: { domain: 'sensor' } } },
   { name: "wind_gust_speed", title: "Alternative wind gust speed sensor", selector: { entity: { domain: 'sensor' } } },
   { name: "visibility", title: "Alternative visibility sensor", selector: { entity: { domain: 'sensor' } } },
+  { name: "option1", title: "Alternative sensor 1", selector: { entity: { domain: 'sensor' } } },
+  { name: "option2", title: "Alternative sensor 1", selector: { entity: { domain: 'sensor' } } },
+  { name: "option3", title: "Alternative sensor 1", selector: { entity: { domain: 'sensor' } } },
 ];
 
 class WeatherChartCardEditor extends s {
@@ -1171,6 +1174,18 @@ class WeatherChartCardEditor extends s {
         ></ha-radio>
         <label class="check-label">
           Daily forecast
+        </label>
+      </div>
+
+      <div class="radio-group">
+        <ha-radio
+          name="type"
+          value="twice_daily"
+          @change="${this._handleTypeChange}"
+          .checked="${forecastConfig.type === 'twice_daily'}"
+        ></ha-radio>
+        <label class="check-label">
+          Twice Daily forecast
         </label>
       </div>
 
