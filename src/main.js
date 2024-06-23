@@ -558,10 +558,10 @@ drawChart({ config, language, weather, forecastItems } = this) {
           if (probability !== undefined && probability !== null && config.forecast.show_probability) {
 	    formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)} ${precipUnit}\n${Math.round(probability)}%`;
           } else {
-            formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)} ${precipUnit}`;
+            formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)}${precipUnit}`;
           }
         } else {
-          formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)} ${precipUnit}`;
+          formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)}${precipUnit}`;
         }
 
         formattedValue = formattedValue.replace('\n', '\n\n');
@@ -741,9 +741,9 @@ drawChart({ config, language, weather, forecastItems } = this) {
       var unit = context.datasetIndex === 2 ? precipUnit : tempUnit;
 
       if (config.forecast.precipitation_type === 'rainfall' && context.datasetIndex === 2 && config.forecast.show_probability && probability !== undefined && probability !== null) {
-        return label + ': ' + value + ' ' + precipUnit + ' / ' + Math.round(probability) + '%';
+        return label + ': ' + value + precipUnit + ' / ' + Math.round(probability) + '%';
       } else {
-        return label + ': ' + value + ' ' + unit;
+        return label + ': ' + value + unit;
       }
             },
           },
