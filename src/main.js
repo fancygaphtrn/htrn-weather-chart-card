@@ -769,7 +769,7 @@ computeForecastData({ config, forecastItems } = this) {
         continue;
       }
     }
-    if (this.weather.attributes.attribution == "Data from National Weather Service/NOAA" ) {
+    if (config.forecast.type === 'twice_daily' ) {
 	dateTime.push(d.datetime);
 	if (d.is_daytime || this.mode == 'hourly') {
 	  tempHigh.push(d.temperature);
