@@ -18053,7 +18053,7 @@ measureCard() {
     return;
   }
 
-  this.forecastItems = numberOfForecasts > 0 ? numberOfForecasts : Math.round(card.offsetWidth / (fontSize * 2.5)-1);
+  this.forecastItems = numberOfForecasts > 0 ? numberOfForecasts : Math.round((card.offsetWidth - 36) / (fontSize * 2.5)-1);
   this.drawChart();
 }
 
