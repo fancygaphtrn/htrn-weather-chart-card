@@ -140,7 +140,7 @@ const locale = {
   en: {
     'tempHi': 'Temperature',
     'tempLo': 'Temperature night',
-    'precip': 'Precipitations',
+    'precip': 'Precipitation',
     'feelsLike': 'Feels like',
     'units': {
       'km/h': 'km/h',
