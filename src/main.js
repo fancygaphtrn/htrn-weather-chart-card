@@ -561,7 +561,8 @@ drawChart({ config, language, weather, forecastItems } = this) {
             formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)}${precipUnit}`;
           }
         } else {
-          formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)}${precipUnit}`;
+          //formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)}${precipUnit}`;
+          formattedValue = `${Math.round(rainfall)}${precipUnit}`;
         }
 
         formattedValue = formattedValue.replace('\n', '\n\n');
