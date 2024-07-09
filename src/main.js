@@ -147,7 +147,9 @@ set hass(hass) {
   this.weather = this.config.entity in hass.states
     ? hass.states[this.config.entity]
     : null;
-
+  if (!this.weather || this.weather.state == "unavailable") {
+    this.weather = null
+  }
   if (this.weather) {
     this.temperature = this.config.temp ? hass.states[this.config.temp].state : this.weather.attributes.temperature;
     this.humidity = this.config.humid ? hass.states[this.config.humid].state : this.weather.attributes.humidity;
