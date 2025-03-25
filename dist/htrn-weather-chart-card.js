@@ -838,26 +838,26 @@ const weatherIconsNight = {
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const t$1=window,e$2=t$1.ShadowRoot&&(void 0===t$1.ShadyCSS||t$1.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s$3=Symbol(),n$4=new WeakMap;let o$3 = class o{constructor(t,e,n){if(this._$cssResult$=!0,n!==s$3)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e;}get styleSheet(){let t=this.o;const s=this.t;if(e$2&&void 0===t){const e=void 0!==s&&1===s.length;e&&(t=n$4.get(s)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),e&&n$4.set(s,t));}return t}toString(){return this.cssText}};const r$2=t=>new o$3("string"==typeof t?t:t+"",void 0,s$3),S$1=(s,n)=>{e$2?s.adoptedStyleSheets=n.map((t=>t instanceof CSSStyleSheet?t:t.styleSheet)):n.forEach((e=>{const n=document.createElement("style"),o=t$1.litNonce;void 0!==o&&n.setAttribute("nonce",o),n.textContent=e.cssText,s.appendChild(n);}));},c$1=e$2?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const s of t.cssRules)e+=s.cssText;return r$2(e)})(t):t;
+const t$1=window,e$2=t$1.ShadowRoot&&(void 0===t$1.ShadyCSS||t$1.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,s$3=Symbol(),n$4=new WeakMap;let o$3 = class o{constructor(t,e,n){if(this._$cssResult$=true,n!==s$3)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e;}get styleSheet(){let t=this.o;const s=this.t;if(e$2&&void 0===t){const e=void 0!==s&&1===s.length;e&&(t=n$4.get(s)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),e&&n$4.set(s,t));}return t}toString(){return this.cssText}};const r$2=t=>new o$3("string"==typeof t?t:t+"",void 0,s$3),S$1=(s,n)=>{e$2?s.adoptedStyleSheets=n.map((t=>t instanceof CSSStyleSheet?t:t.styleSheet)):n.forEach((e=>{const n=document.createElement("style"),o=t$1.litNonce;void 0!==o&&n.setAttribute("nonce",o),n.textContent=e.cssText,s.appendChild(n);}));},c$1=e$2?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const s of t.cssRules)e+=s.cssText;return r$2(e)})(t):t;
 
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */var s$2;const e$1=window,r$1=e$1.trustedTypes,h$1=r$1?r$1.emptyScript:"",o$2=e$1.reactiveElementPolyfillSupport,n$3={toAttribute(t,i){switch(i){case Boolean:t=t?h$1:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t);}return t},fromAttribute(t,i){let s=t;switch(i){case Boolean:s=null!==t;break;case Number:s=null===t?null:Number(t);break;case Object:case Array:try{s=JSON.parse(t);}catch(t){s=null;}}return s}},a$1=(t,i)=>i!==t&&(i==i||t==t),l$2={attribute:!0,type:String,converter:n$3,reflect:!1,hasChanged:a$1},d$1="finalized";let u$1 = class u extends HTMLElement{constructor(){super(),this._$Ei=new Map,this.isUpdatePending=!1,this.hasUpdated=!1,this._$El=null,this._$Eu();}static addInitializer(t){var i;this.finalize(),(null!==(i=this.h)&&void 0!==i?i:this.h=[]).push(t);}static get observedAttributes(){this.finalize();const t=[];return this.elementProperties.forEach(((i,s)=>{const e=this._$Ep(s,i);void 0!==e&&(this._$Ev.set(e,s),t.push(e));})),t}static createProperty(t,i=l$2){if(i.state&&(i.attribute=!1),this.finalize(),this.elementProperties.set(t,i),!i.noAccessor&&!this.prototype.hasOwnProperty(t)){const s="symbol"==typeof t?Symbol():"__"+t,e=this.getPropertyDescriptor(t,s,i);void 0!==e&&Object.defineProperty(this.prototype,t,e);}}static getPropertyDescriptor(t,i,s){return {get(){return this[i]},set(e){const r=this[t];this[i]=e,this.requestUpdate(t,r,s);},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)||l$2}static finalize(){if(this.hasOwnProperty(d$1))return !1;this[d$1]=!0;const t=Object.getPrototypeOf(this);if(t.finalize(),void 0!==t.h&&(this.h=[...t.h]),this.elementProperties=new Map(t.elementProperties),this._$Ev=new Map,this.hasOwnProperty("properties")){const t=this.properties,i=[...Object.getOwnPropertyNames(t),...Object.getOwnPropertySymbols(t)];for(const s of i)this.createProperty(s,t[s]);}return this.elementStyles=this.finalizeStyles(this.styles),!0}static finalizeStyles(i){const s=[];if(Array.isArray(i)){const e=new Set(i.flat(1/0).reverse());for(const i of e)s.unshift(c$1(i));}else void 0!==i&&s.push(c$1(i));return s}static _$Ep(t,i){const s=i.attribute;return !1===s?void 0:"string"==typeof s?s:"string"==typeof t?t.toLowerCase():void 0}_$Eu(){var t;this._$E_=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$Eg(),this.requestUpdate(),null===(t=this.constructor.h)||void 0===t||t.forEach((t=>t(this)));}addController(t){var i,s;(null!==(i=this._$ES)&&void 0!==i?i:this._$ES=[]).push(t),void 0!==this.renderRoot&&this.isConnected&&(null===(s=t.hostConnected)||void 0===s||s.call(t));}removeController(t){var i;null===(i=this._$ES)||void 0===i||i.splice(this._$ES.indexOf(t)>>>0,1);}_$Eg(){this.constructor.elementProperties.forEach(((t,i)=>{this.hasOwnProperty(i)&&(this._$Ei.set(i,this[i]),delete this[i]);}));}createRenderRoot(){var t;const s=null!==(t=this.shadowRoot)&&void 0!==t?t:this.attachShadow(this.constructor.shadowRootOptions);return S$1(s,this.constructor.elementStyles),s}connectedCallback(){var t;void 0===this.renderRoot&&(this.renderRoot=this.createRenderRoot()),this.enableUpdating(!0),null===(t=this._$ES)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostConnected)||void 0===i?void 0:i.call(t)}));}enableUpdating(t){}disconnectedCallback(){var t;null===(t=this._$ES)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostDisconnected)||void 0===i?void 0:i.call(t)}));}attributeChangedCallback(t,i,s){this._$AK(t,s);}_$EO(t,i,s=l$2){var e;const r=this.constructor._$Ep(t,s);if(void 0!==r&&!0===s.reflect){const h=(void 0!==(null===(e=s.converter)||void 0===e?void 0:e.toAttribute)?s.converter:n$3).toAttribute(i,s.type);this._$El=t,null==h?this.removeAttribute(r):this.setAttribute(r,h),this._$El=null;}}_$AK(t,i){var s;const e=this.constructor,r=e._$Ev.get(t);if(void 0!==r&&this._$El!==r){const t=e.getPropertyOptions(r),h="function"==typeof t.converter?{fromAttribute:t.converter}:void 0!==(null===(s=t.converter)||void 0===s?void 0:s.fromAttribute)?t.converter:n$3;this._$El=r,this[r]=h.fromAttribute(i,t.type),this._$El=null;}}requestUpdate(t,i,s){let e=!0;void 0!==t&&(((s=s||this.constructor.getPropertyOptions(t)).hasChanged||a$1)(this[t],i)?(this._$AL.has(t)||this._$AL.set(t,i),!0===s.reflect&&this._$El!==t&&(void 0===this._$EC&&(this._$EC=new Map),this._$EC.set(t,s))):e=!1),!this.isUpdatePending&&e&&(this._$E_=this._$Ej());}async _$Ej(){this.isUpdatePending=!0;try{await this._$E_;}catch(t){Promise.reject(t);}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){var t;if(!this.isUpdatePending)return;this.hasUpdated,this._$Ei&&(this._$Ei.forEach(((t,i)=>this[i]=t)),this._$Ei=void 0);let i=!1;const s=this._$AL;try{i=this.shouldUpdate(s),i?(this.willUpdate(s),null===(t=this._$ES)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostUpdate)||void 0===i?void 0:i.call(t)})),this.update(s)):this._$Ek();}catch(t){throw i=!1,this._$Ek(),t}i&&this._$AE(s);}willUpdate(t){}_$AE(t){var i;null===(i=this._$ES)||void 0===i||i.forEach((t=>{var i;return null===(i=t.hostUpdated)||void 0===i?void 0:i.call(t)})),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t);}_$Ek(){this._$AL=new Map,this.isUpdatePending=!1;}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$E_}shouldUpdate(t){return !0}update(t){void 0!==this._$EC&&(this._$EC.forEach(((t,i)=>this._$EO(i,this[i],t))),this._$EC=void 0),this._$Ek();}updated(t){}firstUpdated(t){}};u$1[d$1]=!0,u$1.elementProperties=new Map,u$1.elementStyles=[],u$1.shadowRootOptions={mode:"open"},null==o$2||o$2({ReactiveElement:u$1}),(null!==(s$2=e$1.reactiveElementVersions)&&void 0!==s$2?s$2:e$1.reactiveElementVersions=[]).push("1.6.3");
+ */var s$2;const e$1=window,r$1=e$1.trustedTypes,h$1=r$1?r$1.emptyScript:"",o$2=e$1.reactiveElementPolyfillSupport,n$3={toAttribute(t,i){switch(i){case Boolean:t=t?h$1:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t);}return t},fromAttribute(t,i){let s=t;switch(i){case Boolean:s=null!==t;break;case Number:s=null===t?null:Number(t);break;case Object:case Array:try{s=JSON.parse(t);}catch(t){s=null;}}return s}},a$1=(t,i)=>i!==t&&(i==i||t==t),l$2={attribute:true,type:String,converter:n$3,reflect:false,hasChanged:a$1},d$1="finalized";let u$1 = class u extends HTMLElement{constructor(){super(),this._$Ei=new Map,this.isUpdatePending=false,this.hasUpdated=false,this._$El=null,this._$Eu();}static addInitializer(t){var i;this.finalize(),(null!==(i=this.h)&&void 0!==i?i:this.h=[]).push(t);}static get observedAttributes(){this.finalize();const t=[];return this.elementProperties.forEach(((i,s)=>{const e=this._$Ep(s,i);void 0!==e&&(this._$Ev.set(e,s),t.push(e));})),t}static createProperty(t,i=l$2){if(i.state&&(i.attribute=false),this.finalize(),this.elementProperties.set(t,i),!i.noAccessor&&!this.prototype.hasOwnProperty(t)){const s="symbol"==typeof t?Symbol():"__"+t,e=this.getPropertyDescriptor(t,s,i);void 0!==e&&Object.defineProperty(this.prototype,t,e);}}static getPropertyDescriptor(t,i,s){return {get(){return this[i]},set(e){const r=this[t];this[i]=e,this.requestUpdate(t,r,s);},configurable:true,enumerable:true}}static getPropertyOptions(t){return this.elementProperties.get(t)||l$2}static finalize(){if(this.hasOwnProperty(d$1))return  false;this[d$1]=true;const t=Object.getPrototypeOf(this);if(t.finalize(),void 0!==t.h&&(this.h=[...t.h]),this.elementProperties=new Map(t.elementProperties),this._$Ev=new Map,this.hasOwnProperty("properties")){const t=this.properties,i=[...Object.getOwnPropertyNames(t),...Object.getOwnPropertySymbols(t)];for(const s of i)this.createProperty(s,t[s]);}return this.elementStyles=this.finalizeStyles(this.styles),true}static finalizeStyles(i){const s=[];if(Array.isArray(i)){const e=new Set(i.flat(1/0).reverse());for(const i of e)s.unshift(c$1(i));}else void 0!==i&&s.push(c$1(i));return s}static _$Ep(t,i){const s=i.attribute;return  false===s?void 0:"string"==typeof s?s:"string"==typeof t?t.toLowerCase():void 0}_$Eu(){var t;this._$E_=new Promise((t=>this.enableUpdating=t)),this._$AL=new Map,this._$Eg(),this.requestUpdate(),null===(t=this.constructor.h)||void 0===t||t.forEach((t=>t(this)));}addController(t){var i,s;(null!==(i=this._$ES)&&void 0!==i?i:this._$ES=[]).push(t),void 0!==this.renderRoot&&this.isConnected&&(null===(s=t.hostConnected)||void 0===s||s.call(t));}removeController(t){var i;null===(i=this._$ES)||void 0===i||i.splice(this._$ES.indexOf(t)>>>0,1);}_$Eg(){this.constructor.elementProperties.forEach(((t,i)=>{this.hasOwnProperty(i)&&(this._$Ei.set(i,this[i]),delete this[i]);}));}createRenderRoot(){var t;const s=null!==(t=this.shadowRoot)&&void 0!==t?t:this.attachShadow(this.constructor.shadowRootOptions);return S$1(s,this.constructor.elementStyles),s}connectedCallback(){var t;void 0===this.renderRoot&&(this.renderRoot=this.createRenderRoot()),this.enableUpdating(true),null===(t=this._$ES)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostConnected)||void 0===i?void 0:i.call(t)}));}enableUpdating(t){}disconnectedCallback(){var t;null===(t=this._$ES)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostDisconnected)||void 0===i?void 0:i.call(t)}));}attributeChangedCallback(t,i,s){this._$AK(t,s);}_$EO(t,i,s=l$2){var e;const r=this.constructor._$Ep(t,s);if(void 0!==r&&true===s.reflect){const h=(void 0!==(null===(e=s.converter)||void 0===e?void 0:e.toAttribute)?s.converter:n$3).toAttribute(i,s.type);this._$El=t,null==h?this.removeAttribute(r):this.setAttribute(r,h),this._$El=null;}}_$AK(t,i){var s;const e=this.constructor,r=e._$Ev.get(t);if(void 0!==r&&this._$El!==r){const t=e.getPropertyOptions(r),h="function"==typeof t.converter?{fromAttribute:t.converter}:void 0!==(null===(s=t.converter)||void 0===s?void 0:s.fromAttribute)?t.converter:n$3;this._$El=r,this[r]=h.fromAttribute(i,t.type),this._$El=null;}}requestUpdate(t,i,s){let e=true;void 0!==t&&(((s=s||this.constructor.getPropertyOptions(t)).hasChanged||a$1)(this[t],i)?(this._$AL.has(t)||this._$AL.set(t,i),true===s.reflect&&this._$El!==t&&(void 0===this._$EC&&(this._$EC=new Map),this._$EC.set(t,s))):e=false),!this.isUpdatePending&&e&&(this._$E_=this._$Ej());}async _$Ej(){this.isUpdatePending=true;try{await this._$E_;}catch(t){Promise.reject(t);}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){var t;if(!this.isUpdatePending)return;this.hasUpdated,this._$Ei&&(this._$Ei.forEach(((t,i)=>this[i]=t)),this._$Ei=void 0);let i=false;const s=this._$AL;try{i=this.shouldUpdate(s),i?(this.willUpdate(s),null===(t=this._$ES)||void 0===t||t.forEach((t=>{var i;return null===(i=t.hostUpdate)||void 0===i?void 0:i.call(t)})),this.update(s)):this._$Ek();}catch(t){throw i=false,this._$Ek(),t}i&&this._$AE(s);}willUpdate(t){}_$AE(t){var i;null===(i=this._$ES)||void 0===i||i.forEach((t=>{var i;return null===(i=t.hostUpdated)||void 0===i?void 0:i.call(t)})),this.hasUpdated||(this.hasUpdated=true,this.firstUpdated(t)),this.updated(t);}_$Ek(){this._$AL=new Map,this.isUpdatePending=false;}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$E_}shouldUpdate(t){return  true}update(t){ void 0!==this._$EC&&(this._$EC.forEach(((t,i)=>this._$EO(i,this[i],t))),this._$EC=void 0),this._$Ek();}updated(t){}firstUpdated(t){}};u$1[d$1]=true,u$1.elementProperties=new Map,u$1.elementStyles=[],u$1.shadowRootOptions={mode:"open"},null==o$2||o$2({ReactiveElement:u$1}),(null!==(s$2=e$1.reactiveElementVersions)&&void 0!==s$2?s$2:e$1.reactiveElementVersions=[]).push("1.6.3");
 
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-var t;const i=window,s$1=i.trustedTypes,e=s$1?s$1.createPolicy("lit-html",{createHTML:t=>t}):void 0,o$1="$lit$",n$2=`lit$${(Math.random()+"").slice(9)}$`,l$1="?"+n$2,h=`<${l$1}>`,r=document,u=()=>r.createComment(""),d=t=>null===t||"object"!=typeof t&&"function"!=typeof t,c=Array.isArray,v=t=>c(t)||"function"==typeof(null==t?void 0:t[Symbol.iterator]),a="[ \t\n\f\r]",f=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,_=/-->/g,m=/>/g,p=RegExp(`>|${a}(?:([^\\s"'>=/]+)(${a}*=${a}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),g=/'/g,$=/"/g,y=/^(?:script|style|textarea|title)$/i,w=t=>(i,...s)=>({_$litType$:t,strings:i,values:s}),x=w(1),T=Symbol.for("lit-noChange"),A=Symbol.for("lit-nothing"),E=new WeakMap,C=r.createTreeWalker(r,129,null,!1);function P(t,i){if(!Array.isArray(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==e?e.createHTML(i):i}const V=(t,i)=>{const s=t.length-1,e=[];let l,r=2===i?"<svg>":"",u=f;for(let i=0;i<s;i++){const s=t[i];let d,c,v=-1,a=0;for(;a<s.length&&(u.lastIndex=a,c=u.exec(s),null!==c);)a=u.lastIndex,u===f?"!--"===c[1]?u=_:void 0!==c[1]?u=m:void 0!==c[2]?(y.test(c[2])&&(l=RegExp("</"+c[2],"g")),u=p):void 0!==c[3]&&(u=p):u===p?">"===c[0]?(u=null!=l?l:f,v=-1):void 0===c[1]?v=-2:(v=u.lastIndex-c[2].length,d=c[1],u=void 0===c[3]?p:'"'===c[3]?$:g):u===$||u===g?u=p:u===_||u===m?u=f:(u=p,l=void 0);const w=u===p&&t[i+1].startsWith("/>")?" ":"";r+=u===f?s+h:v>=0?(e.push(d),s.slice(0,v)+o$1+s.slice(v)+n$2+w):s+n$2+(-2===v?(e.push(void 0),i):w);}return [P(t,r+(t[s]||"<?>")+(2===i?"</svg>":"")),e]};class N{constructor({strings:t,_$litType$:i},e){let h;this.parts=[];let r=0,d=0;const c=t.length-1,v=this.parts,[a,f]=V(t,i);if(this.el=N.createElement(a,e),C.currentNode=this.el.content,2===i){const t=this.el.content,i=t.firstChild;i.remove(),t.append(...i.childNodes);}for(;null!==(h=C.nextNode())&&v.length<c;){if(1===h.nodeType){if(h.hasAttributes()){const t=[];for(const i of h.getAttributeNames())if(i.endsWith(o$1)||i.startsWith(n$2)){const s=f[d++];if(t.push(i),void 0!==s){const t=h.getAttribute(s.toLowerCase()+o$1).split(n$2),i=/([.?@])?(.*)/.exec(s);v.push({type:1,index:r,name:i[2],strings:t,ctor:"."===i[1]?H:"?"===i[1]?L:"@"===i[1]?z:k});}else v.push({type:6,index:r});}for(const i of t)h.removeAttribute(i);}if(y.test(h.tagName)){const t=h.textContent.split(n$2),i=t.length-1;if(i>0){h.textContent=s$1?s$1.emptyScript:"";for(let s=0;s<i;s++)h.append(t[s],u()),C.nextNode(),v.push({type:2,index:++r});h.append(t[i],u());}}}else if(8===h.nodeType)if(h.data===l$1)v.push({type:2,index:r});else {let t=-1;for(;-1!==(t=h.data.indexOf(n$2,t+1));)v.push({type:7,index:r}),t+=n$2.length-1;}r++;}}static createElement(t,i){const s=r.createElement("template");return s.innerHTML=t,s}}function S(t,i,s=t,e){var o,n,l,h;if(i===T)return i;let r=void 0!==e?null===(o=s._$Co)||void 0===o?void 0:o[e]:s._$Cl;const u=d(i)?void 0:i._$litDirective$;return (null==r?void 0:r.constructor)!==u&&(null===(n=null==r?void 0:r._$AO)||void 0===n||n.call(r,!1),void 0===u?r=void 0:(r=new u(t),r._$AT(t,s,e)),void 0!==e?(null!==(l=(h=s)._$Co)&&void 0!==l?l:h._$Co=[])[e]=r:s._$Cl=r),void 0!==r&&(i=S(t,r._$AS(t,i.values),r,e)),i}class M{constructor(t,i){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){var i;const{el:{content:s},parts:e}=this._$AD,o=(null!==(i=null==t?void 0:t.creationScope)&&void 0!==i?i:r).importNode(s,!0);C.currentNode=o;let n=C.nextNode(),l=0,h=0,u=e[0];for(;void 0!==u;){if(l===u.index){let i;2===u.type?i=new R(n,n.nextSibling,this,t):1===u.type?i=new u.ctor(n,u.name,u.strings,this,t):6===u.type&&(i=new Z(n,this,t)),this._$AV.push(i),u=e[++h];}l!==(null==u?void 0:u.index)&&(n=C.nextNode(),l++);}return C.currentNode=r,o}v(t){let i=0;for(const s of this._$AV)void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class R{constructor(t,i,s,e){var o;this.type=2,this._$AH=A,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$Cp=null===(o=null==e?void 0:e.isConnected)||void 0===o||o;}get _$AU(){var t,i;return null!==(i=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==i?i:this._$Cp}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===(null==t?void 0:t.nodeType)&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=S(this,t,i),d(t)?t===A||null==t||""===t?(this._$AH!==A&&this._$AR(),this._$AH=A):t!==this._$AH&&t!==T&&this._(t):void 0!==t._$litType$?this.g(t):void 0!==t.nodeType?this.$(t):v(t)?this.T(t):this._(t);}k(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}$(t){this._$AH!==t&&(this._$AR(),this._$AH=this.k(t));}_(t){this._$AH!==A&&d(this._$AH)?this._$AA.nextSibling.data=t:this.$(r.createTextNode(t)),this._$AH=t;}g(t){var i;const{values:s,_$litType$:e}=t,o="number"==typeof e?this._$AC(t):(void 0===e.el&&(e.el=N.createElement(P(e.h,e.h[0]),this.options)),e);if((null===(i=this._$AH)||void 0===i?void 0:i._$AD)===o)this._$AH.v(s);else {const t=new M(o,this),i=t.u(this.options);t.v(s),this.$(i),this._$AH=t;}}_$AC(t){let i=E.get(t.strings);return void 0===i&&E.set(t.strings,i=new N(t)),i}T(t){c(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const o of t)e===i.length?i.push(s=new R(this.k(u()),this.k(u()),this,this.options)):s=i[e],s._$AI(o),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,i){var s;for(null===(s=this._$AP)||void 0===s||s.call(this,!1,!0,i);t&&t!==this._$AB;){const i=t.nextSibling;t.remove(),t=i;}}setConnected(t){var i;void 0===this._$AM&&(this._$Cp=t,null===(i=this._$AP)||void 0===i||i.call(this,t));}}class k{constructor(t,i,s,e,o){this.type=1,this._$AH=A,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=o,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=A;}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,i=this,s,e){const o=this.strings;let n=!1;if(void 0===o)t=S(this,t,i,0),n=!d(t)||t!==this._$AH&&t!==T,n&&(this._$AH=t);else {const e=t;let l,h;for(t=o[0],l=0;l<o.length-1;l++)h=S(this,e[s+l],i,l),h===T&&(h=this._$AH[l]),n||(n=!d(h)||h!==this._$AH[l]),h===A?t=A:t!==A&&(t+=(null!=h?h:"")+o[l+1]),this._$AH[l]=h;}n&&!e&&this.j(t);}j(t){t===A?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"");}}class H extends k{constructor(){super(...arguments),this.type=3;}j(t){this.element[this.name]=t===A?void 0:t;}}const I=s$1?s$1.emptyScript:"";class L extends k{constructor(){super(...arguments),this.type=4;}j(t){t&&t!==A?this.element.setAttribute(this.name,I):this.element.removeAttribute(this.name);}}class z extends k{constructor(t,i,s,e,o){super(t,i,s,e,o),this.type=5;}_$AI(t,i=this){var s;if((t=null!==(s=S(this,t,i,0))&&void 0!==s?s:A)===T)return;const e=this._$AH,o=t===A&&e!==A||t.capture!==e.capture||t.once!==e.once||t.passive!==e.passive,n=t!==A&&(e===A||o);o&&this.element.removeEventListener(this.name,this,e),n&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){var i,s;"function"==typeof this._$AH?this._$AH.call(null!==(s=null===(i=this.options)||void 0===i?void 0:i.host)&&void 0!==s?s:this.element,t):this._$AH.handleEvent(t);}}class Z{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){S(this,t);}}const B=i.litHtmlPolyfillSupport;null==B||B(N,R),(null!==(t=i.litHtmlVersions)&&void 0!==t?t:i.litHtmlVersions=[]).push("2.8.0");const D=(t,i,s)=>{var e,o;const n=null!==(e=null==s?void 0:s.renderBefore)&&void 0!==e?e:i;let l=n._$litPart$;if(void 0===l){const t=null!==(o=null==s?void 0:s.renderBefore)&&void 0!==o?o:null;n._$litPart$=l=new R(i.insertBefore(u(),t),t,void 0,null!=s?s:{});}return l._$AI(t),l};
+var t;const i=window,s$1=i.trustedTypes,e=s$1?s$1.createPolicy("lit-html",{createHTML:t=>t}):void 0,o$1="$lit$",n$2=`lit$${(Math.random()+"").slice(9)}$`,l$1="?"+n$2,h=`<${l$1}>`,r=document,u=()=>r.createComment(""),d=t=>null===t||"object"!=typeof t&&"function"!=typeof t,c=Array.isArray,v=t=>c(t)||"function"==typeof(null==t?void 0:t[Symbol.iterator]),a="[ \t\n\f\r]",f=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,_=/-->/g,m=/>/g,p=RegExp(`>|${a}(?:([^\\s"'>=/]+)(${a}*=${a}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),g=/'/g,$=/"/g,y=/^(?:script|style|textarea|title)$/i,w=t=>(i,...s)=>({_$litType$:t,strings:i,values:s}),x$1=w(1),T=Symbol.for("lit-noChange"),A=Symbol.for("lit-nothing"),E=new WeakMap,C=r.createTreeWalker(r,129,null,false);function P(t,i){if(!Array.isArray(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==e?e.createHTML(i):i}const V=(t,i)=>{const s=t.length-1,e=[];let l,r=2===i?"<svg>":"",u=f;for(let i=0;i<s;i++){const s=t[i];let d,c,v=-1,a=0;for(;a<s.length&&(u.lastIndex=a,c=u.exec(s),null!==c);)a=u.lastIndex,u===f?"!--"===c[1]?u=_:void 0!==c[1]?u=m:void 0!==c[2]?(y.test(c[2])&&(l=RegExp("</"+c[2],"g")),u=p):void 0!==c[3]&&(u=p):u===p?">"===c[0]?(u=null!=l?l:f,v=-1):void 0===c[1]?v=-2:(v=u.lastIndex-c[2].length,d=c[1],u=void 0===c[3]?p:'"'===c[3]?$:g):u===$||u===g?u=p:u===_||u===m?u=f:(u=p,l=void 0);const w=u===p&&t[i+1].startsWith("/>")?" ":"";r+=u===f?s+h:v>=0?(e.push(d),s.slice(0,v)+o$1+s.slice(v)+n$2+w):s+n$2+(-2===v?(e.push(void 0),i):w);}return [P(t,r+(t[s]||"<?>")+(2===i?"</svg>":"")),e]};class N{constructor({strings:t,_$litType$:i},e){let h;this.parts=[];let r=0,d=0;const c=t.length-1,v=this.parts,[a,f]=V(t,i);if(this.el=N.createElement(a,e),C.currentNode=this.el.content,2===i){const t=this.el.content,i=t.firstChild;i.remove(),t.append(...i.childNodes);}for(;null!==(h=C.nextNode())&&v.length<c;){if(1===h.nodeType){if(h.hasAttributes()){const t=[];for(const i of h.getAttributeNames())if(i.endsWith(o$1)||i.startsWith(n$2)){const s=f[d++];if(t.push(i),void 0!==s){const t=h.getAttribute(s.toLowerCase()+o$1).split(n$2),i=/([.?@])?(.*)/.exec(s);v.push({type:1,index:r,name:i[2],strings:t,ctor:"."===i[1]?H:"?"===i[1]?L:"@"===i[1]?z:k});}else v.push({type:6,index:r});}for(const i of t)h.removeAttribute(i);}if(y.test(h.tagName)){const t=h.textContent.split(n$2),i=t.length-1;if(i>0){h.textContent=s$1?s$1.emptyScript:"";for(let s=0;s<i;s++)h.append(t[s],u()),C.nextNode(),v.push({type:2,index:++r});h.append(t[i],u());}}}else if(8===h.nodeType)if(h.data===l$1)v.push({type:2,index:r});else {let t=-1;for(;-1!==(t=h.data.indexOf(n$2,t+1));)v.push({type:7,index:r}),t+=n$2.length-1;}r++;}}static createElement(t,i){const s=r.createElement("template");return s.innerHTML=t,s}}function S(t,i,s=t,e){var o,n,l,h;if(i===T)return i;let r=void 0!==e?null===(o=s._$Co)||void 0===o?void 0:o[e]:s._$Cl;const u=d(i)?void 0:i._$litDirective$;return (null==r?void 0:r.constructor)!==u&&(null===(n=null==r?void 0:r._$AO)||void 0===n||n.call(r,false),void 0===u?r=void 0:(r=new u(t),r._$AT(t,s,e)),void 0!==e?(null!==(l=(h=s)._$Co)&&void 0!==l?l:h._$Co=[])[e]=r:s._$Cl=r),void 0!==r&&(i=S(t,r._$AS(t,i.values),r,e)),i}class M{constructor(t,i){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){var i;const{el:{content:s},parts:e}=this._$AD,o=(null!==(i=null==t?void 0:t.creationScope)&&void 0!==i?i:r).importNode(s,true);C.currentNode=o;let n=C.nextNode(),l=0,h=0,u=e[0];for(;void 0!==u;){if(l===u.index){let i;2===u.type?i=new R(n,n.nextSibling,this,t):1===u.type?i=new u.ctor(n,u.name,u.strings,this,t):6===u.type&&(i=new Z(n,this,t)),this._$AV.push(i),u=e[++h];}l!==(null==u?void 0:u.index)&&(n=C.nextNode(),l++);}return C.currentNode=r,o}v(t){let i=0;for(const s of this._$AV) void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class R{constructor(t,i,s,e){var o;this.type=2,this._$AH=A,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$Cp=null===(o=null==e?void 0:e.isConnected)||void 0===o||o;}get _$AU(){var t,i;return null!==(i=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==i?i:this._$Cp}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===(null==t?void 0:t.nodeType)&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=S(this,t,i),d(t)?t===A||null==t||""===t?(this._$AH!==A&&this._$AR(),this._$AH=A):t!==this._$AH&&t!==T&&this._(t):void 0!==t._$litType$?this.g(t):void 0!==t.nodeType?this.$(t):v(t)?this.T(t):this._(t);}k(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}$(t){this._$AH!==t&&(this._$AR(),this._$AH=this.k(t));}_(t){this._$AH!==A&&d(this._$AH)?this._$AA.nextSibling.data=t:this.$(r.createTextNode(t)),this._$AH=t;}g(t){var i;const{values:s,_$litType$:e}=t,o="number"==typeof e?this._$AC(t):(void 0===e.el&&(e.el=N.createElement(P(e.h,e.h[0]),this.options)),e);if((null===(i=this._$AH)||void 0===i?void 0:i._$AD)===o)this._$AH.v(s);else {const t=new M(o,this),i=t.u(this.options);t.v(s),this.$(i),this._$AH=t;}}_$AC(t){let i=E.get(t.strings);return void 0===i&&E.set(t.strings,i=new N(t)),i}T(t){c(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const o of t)e===i.length?i.push(s=new R(this.k(u()),this.k(u()),this,this.options)):s=i[e],s._$AI(o),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,i){var s;for(null===(s=this._$AP)||void 0===s||s.call(this,false,true,i);t&&t!==this._$AB;){const i=t.nextSibling;t.remove(),t=i;}}setConnected(t){var i;void 0===this._$AM&&(this._$Cp=t,null===(i=this._$AP)||void 0===i||i.call(this,t));}}class k{constructor(t,i,s,e,o){this.type=1,this._$AH=A,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=o,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=A;}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,i=this,s,e){const o=this.strings;let n=false;if(void 0===o)t=S(this,t,i,0),n=!d(t)||t!==this._$AH&&t!==T,n&&(this._$AH=t);else {const e=t;let l,h;for(t=o[0],l=0;l<o.length-1;l++)h=S(this,e[s+l],i,l),h===T&&(h=this._$AH[l]),n||(n=!d(h)||h!==this._$AH[l]),h===A?t=A:t!==A&&(t+=(null!=h?h:"")+o[l+1]),this._$AH[l]=h;}n&&!e&&this.j(t);}j(t){t===A?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"");}}class H extends k{constructor(){super(...arguments),this.type=3;}j(t){this.element[this.name]=t===A?void 0:t;}}const I=s$1?s$1.emptyScript:"";class L extends k{constructor(){super(...arguments),this.type=4;}j(t){t&&t!==A?this.element.setAttribute(this.name,I):this.element.removeAttribute(this.name);}}class z extends k{constructor(t,i,s,e,o){super(t,i,s,e,o),this.type=5;}_$AI(t,i=this){var s;if((t=null!==(s=S(this,t,i,0))&&void 0!==s?s:A)===T)return;const e=this._$AH,o=t===A&&e!==A||t.capture!==e.capture||t.once!==e.once||t.passive!==e.passive,n=t!==A&&(e===A||o);o&&this.element.removeEventListener(this.name,this,e),n&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){var i,s;"function"==typeof this._$AH?this._$AH.call(null!==(s=null===(i=this.options)||void 0===i?void 0:i.host)&&void 0!==s?s:this.element,t):this._$AH.handleEvent(t);}}class Z{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){S(this,t);}}const B=i.litHtmlPolyfillSupport;null==B||B(N,R),(null!==(t=i.litHtmlVersions)&&void 0!==t?t:i.litHtmlVersions=[]).push("2.8.0");const D=(t,i,s)=>{var e,o;const n=null!==(e=null==s?void 0:s.renderBefore)&&void 0!==e?e:i;let l=n._$litPart$;if(void 0===l){const t=null!==(o=null==s?void 0:s.renderBefore)&&void 0!==o?o:null;n._$litPart$=l=new R(i.insertBefore(u(),t),t,void 0,null!=s?s:{});}return l._$AI(t),l};
 
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
- */var l,o;class s extends u$1{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0;}createRenderRoot(){var t,e;const i=super.createRenderRoot();return null!==(t=(e=this.renderOptions).renderBefore)&&void 0!==t||(e.renderBefore=i.firstChild),i}update(t){const i=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=D(i,this.renderRoot,this.renderOptions);}connectedCallback(){var t;super.connectedCallback(),null===(t=this._$Do)||void 0===t||t.setConnected(!0);}disconnectedCallback(){var t;super.disconnectedCallback(),null===(t=this._$Do)||void 0===t||t.setConnected(!1);}render(){return T}}s.finalized=!0,s._$litElement$=!0,null===(l=globalThis.litElementHydrateSupport)||void 0===l||l.call(globalThis,{LitElement:s});const n$1=globalThis.litElementPolyfillSupport;null==n$1||n$1({LitElement:s});(null!==(o=globalThis.litElementVersions)&&void 0!==o?o:globalThis.litElementVersions=[]).push("3.3.3");
+ */var l,o;class s extends u$1{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0;}createRenderRoot(){var t,e;const i=super.createRenderRoot();return null!==(t=(e=this.renderOptions).renderBefore)&&void 0!==t||(e.renderBefore=i.firstChild),i}update(t){const i=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=D(i,this.renderRoot,this.renderOptions);}connectedCallback(){var t;super.connectedCallback(),null===(t=this._$Do)||void 0===t||t.setConnected(true);}disconnectedCallback(){var t;super.disconnectedCallback(),null===(t=this._$Do)||void 0===t||t.setConnected(false);}render(){return T}}s.finalized=true,s._$litElement$=true,null===(l=globalThis.litElementHydrateSupport)||void 0===l||l.call(globalThis,{LitElement:s});const n$1=globalThis.litElementPolyfillSupport;null==n$1||n$1({LitElement:s});(null!==(o=globalThis.litElementVersions)&&void 0!==o?o:globalThis.litElementVersions=[]).push("3.3.3");
 
 const ALT_SCHEMA = [
   { name: "temp", title: "Alternative temperature sensor", selector: { entity: { domain: 'sensor' } } },
@@ -1074,7 +1074,7 @@ class WeatherChartCardEditor extends s {
     this._config.show_time !== false;
 
 
-    return x`
+    return x$1`
       <style>
         .switch-label {
           padding-left: 14px;
@@ -1153,7 +1153,7 @@ class WeatherChartCardEditor extends s {
         @closed=${(ev) => ev.stopPropagation()}
       >
         ${this.entities.map((entity) => {
-          return x`<ha-list-item .value=${entity}>${entity}</ha-list-item>`;
+          return x$1`<ha-list-item .value=${entity}>${entity}</ha-list-item>`;
         })}
       </ha-select>
       <ha-textfield
@@ -1249,7 +1249,7 @@ class WeatherChartCardEditor extends s {
             </label>
           </div>
       <div class="switch-container">
-        ${this.hasApparentTemperature ? x`
+        ${this.hasApparentTemperature ? x$1`
           <ha-switch
             @change="${(e) => this._valueChanged(e, 'show_feels_like')}"
             .checked="${this._config.show_feels_like !== false}"
@@ -1260,7 +1260,7 @@ class WeatherChartCardEditor extends s {
         ` : ''}
       </div>
       <div class="switch-container">
-        ${this.hasDescription ? x`
+        ${this.hasDescription ? x$1`
           <ha-switch
             @change="${(e) => this._valueChanged(e, 'show_description')}"
             .checked="${this._config.show_description !== false}"
@@ -1343,7 +1343,7 @@ class WeatherChartCardEditor extends s {
             </label>
 	  </div>
       <div class="switch-container">
-        ${this.hasDewpoint ? x`
+        ${this.hasDewpoint ? x$1`
           <ha-switch
             @change="${(e) => this._valueChanged(e, 'show_dew_point')}"
             .checked="${this._config.show_dew_point !== false}"
@@ -1354,7 +1354,7 @@ class WeatherChartCardEditor extends s {
         ` : ''}
       </div>
       <div class="switch-container">
-        ${this.hasWindgustspeed ? x`
+        ${this.hasWindgustspeed ? x$1`
           <ha-switch
             @change="${(e) => this._valueChanged(e, 'show_wind_gust_speed')}"
             .checked="${this._config.show_wind_gust_speed !== false}"
@@ -1365,7 +1365,7 @@ class WeatherChartCardEditor extends s {
         ` : ''}
       </div>
       <div class="switch-container">
-        ${this.hasVisibility ? x`
+        ${this.hasVisibility ? x$1`
           <ha-switch
             @change="${(e) => this._valueChanged(e, 'show_visibility')}"
             .checked="${this._config.show_visibility !== false}"
@@ -1692,9 +1692,9 @@ customElements.define("weather-chart-card-editor", WeatherChartCardEditor);
  */var n;null!=(null===(n=window.HTMLSlotElement)||void 0===n?void 0:n.prototype.assignedElements)?(o,n)=>o.assignedElements(n):(o,n)=>o.assignedNodes(n).filter((o=>o.nodeType===Node.ELEMENT_NODE));
 
 /*!
- * @kurkle/color v0.3.2
+ * @kurkle/color v0.3.4
  * https://github.com/kurkle/color#readme
- * (c) 2023 Jukka Kurkela
+ * (c) 2024 Jukka Kurkela
  * Released under the MIT License
  */
 function round(v) {
@@ -1868,183 +1868,183 @@ function hslString(v) {
 }
 
 const map$2 = {
-  x: 'dark',
-  Z: 'light',
-  Y: 're',
-  X: 'blu',
-  W: 'gr',
-  V: 'medium',
-  U: 'slate',
-  A: 'ee',
-  T: 'ol',
-  S: 'or',
-  B: 'ra',
-  C: 'lateg',
-  D: 'ights',
-  R: 'in',
-  Q: 'turquois',
-  E: 'hi',
-  P: 'ro',
-  O: 'al',
-  N: 'le',
-  M: 'de',
-  L: 'yello',
-  F: 'en',
-  K: 'ch',
-  G: 'arks',
-  H: 'ea',
-  I: 'ightg',
-  J: 'wh'
+	x: 'dark',
+	Z: 'light',
+	Y: 're',
+	X: 'blu',
+	W: 'gr',
+	V: 'medium',
+	U: 'slate',
+	A: 'ee',
+	T: 'ol',
+	S: 'or',
+	B: 'ra',
+	C: 'lateg',
+	D: 'ights',
+	R: 'in',
+	Q: 'turquois',
+	E: 'hi',
+	P: 'ro',
+	O: 'al',
+	N: 'le',
+	M: 'de',
+	L: 'yello',
+	F: 'en',
+	K: 'ch',
+	G: 'arks',
+	H: 'ea',
+	I: 'ightg',
+	J: 'wh'
 };
 const names$1 = {
-  OiceXe: 'f0f8ff',
-  antiquewEte: 'faebd7',
-  aqua: 'ffff',
-  aquamarRe: '7fffd4',
-  azuY: 'f0ffff',
-  beige: 'f5f5dc',
-  bisque: 'ffe4c4',
-  black: '0',
-  blanKedOmond: 'ffebcd',
-  Xe: 'ff',
-  XeviTet: '8a2be2',
-  bPwn: 'a52a2a',
-  burlywood: 'deb887',
-  caMtXe: '5f9ea0',
-  KartYuse: '7fff00',
-  KocTate: 'd2691e',
-  cSO: 'ff7f50',
-  cSnflowerXe: '6495ed',
-  cSnsilk: 'fff8dc',
-  crimson: 'dc143c',
-  cyan: 'ffff',
-  xXe: '8b',
-  xcyan: '8b8b',
-  xgTMnPd: 'b8860b',
-  xWay: 'a9a9a9',
-  xgYF: '6400',
-  xgYy: 'a9a9a9',
-  xkhaki: 'bdb76b',
-  xmagFta: '8b008b',
-  xTivegYF: '556b2f',
-  xSange: 'ff8c00',
-  xScEd: '9932cc',
-  xYd: '8b0000',
-  xsOmon: 'e9967a',
-  xsHgYF: '8fbc8f',
-  xUXe: '483d8b',
-  xUWay: '2f4f4f',
-  xUgYy: '2f4f4f',
-  xQe: 'ced1',
-  xviTet: '9400d3',
-  dAppRk: 'ff1493',
-  dApskyXe: 'bfff',
-  dimWay: '696969',
-  dimgYy: '696969',
-  dodgerXe: '1e90ff',
-  fiYbrick: 'b22222',
-  flSOwEte: 'fffaf0',
-  foYstWAn: '228b22',
-  fuKsia: 'ff00ff',
-  gaRsbSo: 'dcdcdc',
-  ghostwEte: 'f8f8ff',
-  gTd: 'ffd700',
-  gTMnPd: 'daa520',
-  Way: '808080',
-  gYF: '8000',
-  gYFLw: 'adff2f',
-  gYy: '808080',
-  honeyMw: 'f0fff0',
-  hotpRk: 'ff69b4',
-  RdianYd: 'cd5c5c',
-  Rdigo: '4b0082',
-  ivSy: 'fffff0',
-  khaki: 'f0e68c',
-  lavFMr: 'e6e6fa',
-  lavFMrXsh: 'fff0f5',
-  lawngYF: '7cfc00',
-  NmoncEffon: 'fffacd',
-  ZXe: 'add8e6',
-  ZcSO: 'f08080',
-  Zcyan: 'e0ffff',
-  ZgTMnPdLw: 'fafad2',
-  ZWay: 'd3d3d3',
-  ZgYF: '90ee90',
-  ZgYy: 'd3d3d3',
-  ZpRk: 'ffb6c1',
-  ZsOmon: 'ffa07a',
-  ZsHgYF: '20b2aa',
-  ZskyXe: '87cefa',
-  ZUWay: '778899',
-  ZUgYy: '778899',
-  ZstAlXe: 'b0c4de',
-  ZLw: 'ffffe0',
-  lime: 'ff00',
-  limegYF: '32cd32',
-  lRF: 'faf0e6',
-  magFta: 'ff00ff',
-  maPon: '800000',
-  VaquamarRe: '66cdaa',
-  VXe: 'cd',
-  VScEd: 'ba55d3',
-  VpurpN: '9370db',
-  VsHgYF: '3cb371',
-  VUXe: '7b68ee',
-  VsprRggYF: 'fa9a',
-  VQe: '48d1cc',
-  VviTetYd: 'c71585',
-  midnightXe: '191970',
-  mRtcYam: 'f5fffa',
-  mistyPse: 'ffe4e1',
-  moccasR: 'ffe4b5',
-  navajowEte: 'ffdead',
-  navy: '80',
-  Tdlace: 'fdf5e6',
-  Tive: '808000',
-  TivedBb: '6b8e23',
-  Sange: 'ffa500',
-  SangeYd: 'ff4500',
-  ScEd: 'da70d6',
-  pOegTMnPd: 'eee8aa',
-  pOegYF: '98fb98',
-  pOeQe: 'afeeee',
-  pOeviTetYd: 'db7093',
-  papayawEp: 'ffefd5',
-  pHKpuff: 'ffdab9',
-  peru: 'cd853f',
-  pRk: 'ffc0cb',
-  plum: 'dda0dd',
-  powMrXe: 'b0e0e6',
-  purpN: '800080',
-  YbeccapurpN: '663399',
-  Yd: 'ff0000',
-  Psybrown: 'bc8f8f',
-  PyOXe: '4169e1',
-  saddNbPwn: '8b4513',
-  sOmon: 'fa8072',
-  sandybPwn: 'f4a460',
-  sHgYF: '2e8b57',
-  sHshell: 'fff5ee',
-  siFna: 'a0522d',
-  silver: 'c0c0c0',
-  skyXe: '87ceeb',
-  UXe: '6a5acd',
-  UWay: '708090',
-  UgYy: '708090',
-  snow: 'fffafa',
-  sprRggYF: 'ff7f',
-  stAlXe: '4682b4',
-  tan: 'd2b48c',
-  teO: '8080',
-  tEstN: 'd8bfd8',
-  tomato: 'ff6347',
-  Qe: '40e0d0',
-  viTet: 'ee82ee',
-  JHt: 'f5deb3',
-  wEte: 'ffffff',
-  wEtesmoke: 'f5f5f5',
-  Lw: 'ffff00',
-  LwgYF: '9acd32'
+	OiceXe: 'f0f8ff',
+	antiquewEte: 'faebd7',
+	aqua: 'ffff',
+	aquamarRe: '7fffd4',
+	azuY: 'f0ffff',
+	beige: 'f5f5dc',
+	bisque: 'ffe4c4',
+	black: '0',
+	blanKedOmond: 'ffebcd',
+	Xe: 'ff',
+	XeviTet: '8a2be2',
+	bPwn: 'a52a2a',
+	burlywood: 'deb887',
+	caMtXe: '5f9ea0',
+	KartYuse: '7fff00',
+	KocTate: 'd2691e',
+	cSO: 'ff7f50',
+	cSnflowerXe: '6495ed',
+	cSnsilk: 'fff8dc',
+	crimson: 'dc143c',
+	cyan: 'ffff',
+	xXe: '8b',
+	xcyan: '8b8b',
+	xgTMnPd: 'b8860b',
+	xWay: 'a9a9a9',
+	xgYF: '6400',
+	xgYy: 'a9a9a9',
+	xkhaki: 'bdb76b',
+	xmagFta: '8b008b',
+	xTivegYF: '556b2f',
+	xSange: 'ff8c00',
+	xScEd: '9932cc',
+	xYd: '8b0000',
+	xsOmon: 'e9967a',
+	xsHgYF: '8fbc8f',
+	xUXe: '483d8b',
+	xUWay: '2f4f4f',
+	xUgYy: '2f4f4f',
+	xQe: 'ced1',
+	xviTet: '9400d3',
+	dAppRk: 'ff1493',
+	dApskyXe: 'bfff',
+	dimWay: '696969',
+	dimgYy: '696969',
+	dodgerXe: '1e90ff',
+	fiYbrick: 'b22222',
+	flSOwEte: 'fffaf0',
+	foYstWAn: '228b22',
+	fuKsia: 'ff00ff',
+	gaRsbSo: 'dcdcdc',
+	ghostwEte: 'f8f8ff',
+	gTd: 'ffd700',
+	gTMnPd: 'daa520',
+	Way: '808080',
+	gYF: '8000',
+	gYFLw: 'adff2f',
+	gYy: '808080',
+	honeyMw: 'f0fff0',
+	hotpRk: 'ff69b4',
+	RdianYd: 'cd5c5c',
+	Rdigo: '4b0082',
+	ivSy: 'fffff0',
+	khaki: 'f0e68c',
+	lavFMr: 'e6e6fa',
+	lavFMrXsh: 'fff0f5',
+	lawngYF: '7cfc00',
+	NmoncEffon: 'fffacd',
+	ZXe: 'add8e6',
+	ZcSO: 'f08080',
+	Zcyan: 'e0ffff',
+	ZgTMnPdLw: 'fafad2',
+	ZWay: 'd3d3d3',
+	ZgYF: '90ee90',
+	ZgYy: 'd3d3d3',
+	ZpRk: 'ffb6c1',
+	ZsOmon: 'ffa07a',
+	ZsHgYF: '20b2aa',
+	ZskyXe: '87cefa',
+	ZUWay: '778899',
+	ZUgYy: '778899',
+	ZstAlXe: 'b0c4de',
+	ZLw: 'ffffe0',
+	lime: 'ff00',
+	limegYF: '32cd32',
+	lRF: 'faf0e6',
+	magFta: 'ff00ff',
+	maPon: '800000',
+	VaquamarRe: '66cdaa',
+	VXe: 'cd',
+	VScEd: 'ba55d3',
+	VpurpN: '9370db',
+	VsHgYF: '3cb371',
+	VUXe: '7b68ee',
+	VsprRggYF: 'fa9a',
+	VQe: '48d1cc',
+	VviTetYd: 'c71585',
+	midnightXe: '191970',
+	mRtcYam: 'f5fffa',
+	mistyPse: 'ffe4e1',
+	moccasR: 'ffe4b5',
+	navajowEte: 'ffdead',
+	navy: '80',
+	Tdlace: 'fdf5e6',
+	Tive: '808000',
+	TivedBb: '6b8e23',
+	Sange: 'ffa500',
+	SangeYd: 'ff4500',
+	ScEd: 'da70d6',
+	pOegTMnPd: 'eee8aa',
+	pOegYF: '98fb98',
+	pOeQe: 'afeeee',
+	pOeviTetYd: 'db7093',
+	papayawEp: 'ffefd5',
+	pHKpuff: 'ffdab9',
+	peru: 'cd853f',
+	pRk: 'ffc0cb',
+	plum: 'dda0dd',
+	powMrXe: 'b0e0e6',
+	purpN: '800080',
+	YbeccapurpN: '663399',
+	Yd: 'ff0000',
+	Psybrown: 'bc8f8f',
+	PyOXe: '4169e1',
+	saddNbPwn: '8b4513',
+	sOmon: 'fa8072',
+	sandybPwn: 'f4a460',
+	sHgYF: '2e8b57',
+	sHshell: 'fff5ee',
+	siFna: 'a0522d',
+	silver: 'c0c0c0',
+	skyXe: '87ceeb',
+	UXe: '6a5acd',
+	UWay: '708090',
+	UgYy: '708090',
+	snow: 'fffafa',
+	sprRggYF: 'ff7f',
+	stAlXe: '4682b4',
+	tan: 'd2b48c',
+	teO: '8080',
+	tEstN: 'd8bfd8',
+	tomato: 'ff6347',
+	Qe: '40e0d0',
+	viTet: 'ee82ee',
+	JHt: 'f5deb3',
+	wEte: 'ffffff',
+	wEtesmoke: 'f5f5f5',
+	Lw: 'ffff00',
+	LwgYF: '9acd32'
 };
 function unpack() {
   const unpacked = {};
@@ -2273,9 +2273,9 @@ class Color {
 }
 
 /*!
- * Chart.js v4.4.3
+ * Chart.js v4.4.8
  * https://www.chartjs.org
- * (c) 2024 Chart.js Contributors
+ * (c) 2025 Chart.js Contributors
  * Released under the MIT License
  */
 
@@ -2296,7 +2296,7 @@ class Color {
  * @param value - The value to test.
  * @since 2.7.0
  */ function isNullOrUndef(value) {
-    return value === null || typeof value === 'undefined';
+    return value === null || value === undefined;
 }
 /**
  * Returns true if `value` is an array (including typed arrays), else returns false.
@@ -2587,8 +2587,13 @@ function almostEquals(x, y, epsilon) {
     result.sort((a, b)=>a - b).pop();
     return result;
 }
+/**
+ * Verifies that attempting to coerce n to string or number won't throw a TypeError.
+ */ function isNonPrimitive(n) {
+    return typeof n === 'symbol' || typeof n === 'object' && n !== null && !(Symbol.toPrimitive in n || 'toString' in n || 'valueOf' in n);
+}
 function isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
+    return !isNonPrimitive(n) && !isNaN(parseFloat(n)) && isFinite(n);
 }
 function almostWhole(x, epsilon) {
     const rounded = Math.round(x);
@@ -2880,18 +2885,29 @@ function unlistenArrayEvents(array, listener) {
     let start = 0;
     let count = pointCount;
     if (meta._sorted) {
-        const { iScale , _parsed  } = meta;
+        const { iScale , vScale , _parsed  } = meta;
+        const spanGaps = meta.dataset ? meta.dataset.options ? meta.dataset.options.spanGaps : null : null;
         const axis = iScale.axis;
         const { min , max , minDefined , maxDefined  } = iScale.getUserBounds();
         if (minDefined) {
-            start = _limitValue(Math.min(// @ts-expect-error Need to type _parsed
+            start = Math.min(// @ts-expect-error Need to type _parsed
             _lookupByKey(_parsed, axis, min).lo, // @ts-expect-error Need to fix types on _lookupByKey
-            animationsDisabled ? pointCount : _lookupByKey(points, axis, iScale.getPixelForValue(min)).lo), 0, pointCount - 1);
+            animationsDisabled ? pointCount : _lookupByKey(points, axis, iScale.getPixelForValue(min)).lo);
+            if (spanGaps) {
+                const distanceToDefinedLo = _parsed.slice(0, start + 1).reverse().findIndex((point)=>!isNullOrUndef(point[vScale.axis]));
+                start -= Math.max(0, distanceToDefinedLo);
+            }
+            start = _limitValue(start, 0, pointCount - 1);
         }
         if (maxDefined) {
-            count = _limitValue(Math.max(// @ts-expect-error Need to type _parsed
+            let end = Math.max(// @ts-expect-error Need to type _parsed
             _lookupByKey(_parsed, iScale.axis, max, true).hi + 1, // @ts-expect-error Need to fix types on _lookupByKey
-            animationsDisabled ? 0 : _lookupByKey(points, axis, iScale.getPixelForValue(max), true).hi + 1), start, pointCount) - start;
+            animationsDisabled ? 0 : _lookupByKey(points, axis, iScale.getPixelForValue(max), true).hi + 1);
+            if (spanGaps) {
+                const distanceToDefinedHi = _parsed.slice(end - 1).findIndex((point)=>!isNullOrUndef(point[vScale.axis]));
+                end += Math.max(0, distanceToDefinedHi);
+            }
+            count = _limitValue(end, start, pointCount) - start;
         } else {
             count = pointCount - start;
         }
@@ -4379,12 +4395,6 @@ function capBezierPoints(points, area) {
 }
 
 /**
- * Note: typedefs are auto-exported, so use a made-up `dom` namespace where
- * necessary to avoid duplicates with `export * from './helpers`; see
- * https://github.com/microsoft/TypeScript/issues/46011
- * @typedef { import('../core/core.controller.js').default } dom.Chart
- * @typedef { import('../../types').ChartEvent } ChartEvent
- */ /**
  * @private
  */ function _isDomSupported() {
     return typeof window !== 'undefined' && typeof document !== 'undefined';
@@ -4998,9 +5008,9 @@ function styleChanged(style, prevStyle) {
 }
 
 /*!
- * Chart.js v4.4.3
+ * Chart.js v4.4.8
  * https://www.chartjs.org
- * (c) 2024 Chart.js Contributors
+ * (c) 2025 Chart.js Contributors
  * Released under the MIT License
  */
 
@@ -5434,9 +5444,11 @@ function applyStack(stack, value, dsIndex, options = {}) {
     if (value === null) {
         return;
     }
+    let found = false;
     for(i = 0, ilen = keys.length; i < ilen; ++i){
         datasetIndex = +keys[i];
         if (datasetIndex === dsIndex) {
+            found = true;
             if (options.all) {
                 continue;
             }
@@ -5446,6 +5458,9 @@ function applyStack(stack, value, dsIndex, options = {}) {
         if (isNumberFinite(otherValue) && (singleMode || value === 0 || sign(value) === sign(otherValue))) {
             value += otherValue;
         }
+    }
+    if (!found && !options.all) {
+        return 0;
     }
     return value;
 }
@@ -5690,6 +5705,7 @@ class DatasetController {
         this._resyncElements(resetNewElements);
         if (stackChanged || oldStacked !== meta._stacked) {
             updateStacks(this, meta._parsed);
+            meta._stacked = isStacked(meta.vScale, meta);
         }
     }
  configure() {
@@ -6484,8 +6500,10 @@ class BarController extends DatasetController {
         const metasets = iScale.getMatchingVisibleMetas(this._type).filter((meta)=>meta.controller.options.grouped);
         const stacked = iScale.options.stacked;
         const stacks = [];
+        const currentParsed = this._cachedMeta.controller.getParsed(dataIndex);
+        const iScaleValue = currentParsed && currentParsed[iScale.axis];
         const skipNull = (meta)=>{
-            const parsed = meta.controller.getParsed(dataIndex);
+            const parsed = meta._parsed.find((item)=>item[iScale.axis] === iScaleValue);
             const val = parsed && parsed[meta.vScale.axis];
             if (isNullOrUndef(val) || isNaN(val)) {
                 return true;
@@ -7620,10 +7638,20 @@ var adapters = {
 function binarySearch(metaset, axis, value, intersect) {
     const { controller , data , _sorted  } = metaset;
     const iScale = controller._cachedMeta.iScale;
+    const spanGaps = metaset.dataset ? metaset.dataset.options ? metaset.dataset.options.spanGaps : null : null;
     if (iScale && axis === iScale.axis && axis !== 'r' && _sorted && data.length) {
         const lookupMethod = iScale._reversePixels ? _rlookupByKey : _lookupByKey;
         if (!intersect) {
-            return lookupMethod(data, axis, value);
+            const result = lookupMethod(data, axis, value);
+            if (spanGaps) {
+                const { vScale  } = controller._cachedMeta;
+                const { _parsed  } = metaset;
+                const distanceToDefinedLo = _parsed.slice(0, result.lo + 1).reverse().findIndex((point)=>!isNullOrUndef(point[vScale.axis]));
+                result.lo -= Math.max(0, distanceToDefinedLo);
+                const distanceToDefinedHi = _parsed.slice(result.hi).findIndex((point)=>!isNullOrUndef(point[vScale.axis]));
+                result.hi += Math.max(0, distanceToDefinedHi);
+            }
+            return result;
         } else if (controller._sharedOptions) {
             const el = data[0];
             const range = typeof el.getRange === 'function' && el.getRange(axis);
@@ -7753,7 +7781,7 @@ function binarySearch(metaset, axis, value, intersect) {
     const rangeMethod = axis === 'x' ? 'inXRange' : 'inYRange';
     let intersectsItem = false;
     evaluateInteractionItems(chart, axis, position, (element, datasetIndex, index)=>{
-        if (element[rangeMethod](position[axis], useFinalPosition)) {
+        if (element[rangeMethod] && element[rangeMethod](position[axis], useFinalPosition)) {
             items.push({
                 element,
                 datasetIndex,
@@ -7768,7 +7796,6 @@ function binarySearch(metaset, axis, value, intersect) {
     return items;
 }
  var Interaction = {
-    evaluateInteractionItems,
     modes: {
  index (chart, e, options, useFinalPosition) {
             const position = getRelativePosition(e, chart);
@@ -8031,7 +8058,6 @@ function placeBoxes(boxes, chartArea, params, stacks) {
     for (const layout of boxes){
         const box = layout.box;
         const stack = stacks[layout.stack] || {
-            count: 1,
             placed: 0,
             weight: 1
         };
@@ -10511,7 +10537,7 @@ function needContext(proxy, names) {
     return false;
 }
 
-var version = "4.4.3";
+var version = "4.4.8";
 
 const KNOWN_POSITIONS = [
     'top',
@@ -11043,8 +11069,8 @@ class Chart {
         let i;
         if (this._resizeBeforeDraw) {
             const { width , height  } = this._resizeBeforeDraw;
-            this._resize(width, height);
             this._resizeBeforeDraw = null;
+            this._resize(width, height);
         }
         this.clear();
         if (this.width <= 0 || this.height <= 0) {
@@ -11683,7 +11709,8 @@ class ArcElement extends Element {
         ], useFinalPosition);
         const rAdjust = (this.options.spacing + this.options.borderWidth) / 2;
         const _circumference = valueOrDefault(circumference, endAngle - startAngle);
-        const betweenAngles = _circumference >= TAU || _angleBetween(angle, startAngle, endAngle);
+        const nonZeroBetween = _angleBetween(angle, startAngle, endAngle) && startAngle !== endAngle;
+        const betweenAngles = _circumference >= TAU || nonZeroBetween;
         const withinRadius = _isBetween(distance, innerRadius + rAdjust, outerRadius + rAdjust);
         return betweenAngles && withinRadius;
     }
@@ -12349,6 +12376,9 @@ function containsColorsDefinitions(descriptors) {
 function containsColorsDefinition(descriptor) {
     return descriptor && (descriptor.borderColor || descriptor.backgroundColor);
 }
+function containsDefaultColorsDefenitions() {
+    return defaults$1.borderColor !== 'rgba(0,0,0,0.1)' || defaults$1.backgroundColor !== 'rgba(0,0,0,0.1)';
+}
 var plugin_colors = {
     id: 'colors',
     defaults: {
@@ -12361,7 +12391,8 @@ var plugin_colors = {
         }
         const { data: { datasets  } , options: chartOptions  } = chart.config;
         const { elements  } = chartOptions;
-        if (!options.forceOverride && (containsColorsDefinitions(datasets) || containsColorsDefinition(chartOptions) || elements && containsColorsDefinitions(elements))) {
+        const containsColorDefenition = containsColorsDefinitions(datasets) || containsColorsDefinition(chartOptions) || elements && containsColorsDefinitions(elements) || containsDefaultColorsDefenitions();
+        if (!options.forceOverride && containsColorDefenition) {
             return;
         }
         const colorizer = getColorizer(chart);
@@ -13904,6 +13935,9 @@ const positioners$1 = {
                 ++count;
             }
         }
+        if (count === 0 || xSet.size === 0) {
+            return false;
+        }
         const xAverage = [
             ...xSet
         ].reduce((a, b)=>a + b) / xSet.size;
@@ -15363,14 +15397,14 @@ class LogarithmicScale extends Scale {
                 setMax(10);
             } else {
                 setMin(changeExponent(min, -1));
-                setMax(changeExponent(max, +1));
+                setMax(changeExponent(max, 1));
             }
         }
         if (min <= 0) {
             setMin(changeExponent(max, -1));
         }
         if (max <= 0) {
-            setMax(changeExponent(min, +1));
+            setMax(changeExponent(min, 1));
         }
         this.min = min;
         this.max = max;
@@ -15656,7 +15690,7 @@ function drawRadiusLine(scale, gridLineOpts, radius, labelCount, borderOpts) {
     ctx.save();
     ctx.strokeStyle = color;
     ctx.lineWidth = lineWidth;
-    ctx.setLineDash(borderOpts.dash);
+    ctx.setLineDash(borderOpts.dash || []);
     ctx.lineDashOffset = borderOpts.dashOffset;
     ctx.beginPath();
     pathRadiusLine(scale, radius, circular, labelCount);
@@ -15860,7 +15894,7 @@ class RadialLinearScale extends LinearScaleBase {
                 ctx.strokeStyle = color;
                 ctx.setLineDash(optsAtIndex.borderDash);
                 ctx.lineDashOffset = optsAtIndex.borderDashOffset;
-                offset = this.getDistanceFromCenterForValue(opts.ticks.reverse ? this.min : this.max);
+                offset = this.getDistanceFromCenterForValue(opts.reverse ? this.min : this.max);
                 position = this.getPointPosition(i, offset);
                 ctx.beginPath();
                 ctx.moveTo(this.xCenter, this.yCenter);
@@ -15971,7 +16005,7 @@ const INTERVALS = {
         value = parser(value);
     }
     if (!isNumberFinite(value)) {
-        value = typeof parser === 'string' ? adapter.parse(value,  parser) : adapter.parse(value);
+        value = typeof parser === 'string' ? adapter.parse(value, parser) : adapter.parse(value);
     }
     if (value === null) {
         return null;
@@ -18043,11 +18077,13 @@ subscribeForecastEvents() {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
       this.resizeObserver = null;
+      this.resizeInitialized = false;
     }
   }
 
 measureCard() {
-  const card = this.shadowRoot.querySelector('ha-card');
+  const hacard = this.shadowRoot.querySelector('ha-card');
+  const card = hacard.querySelector('.forecast-container');
   let fontSize = this.config.forecast.labels_font_size;
   const numberOfForecasts = this.config.forecast.number_of_forecasts || 0;
 
@@ -18055,7 +18091,28 @@ measureCard() {
     return;
   }
 
-  this.forecastItems = numberOfForecasts > 0 ? numberOfForecasts : Math.round((card.offsetWidth - 36) / (fontSize * 2.5)-1);
+  if (numberOfForecasts > 0) {
+    this.forecastItems = numberOfForecasts;
+    if (this.forecasts) {
+      const forecastContainer   = this.shadowRoot.querySelector('.forecast-container');
+      const chartContainer      = this.shadowRoot.querySelector('.chart-container');
+      const conditionsContainer = this.shadowRoot.querySelector('.conditions');
+      const windContainer       = this.shadowRoot.querySelector('.wind-details');
+
+      const newWidth = (fontSize + 20) * this.forecasts.length;
+      if (newWidth < card.offsetWidth){
+        newWidth = card.offsetWidth;
+      }
+      forecastContainer.style.width     = `${newWidth}px`;
+      forecastContainer.style.overflowX = 'scroll';
+      
+      chartContainer.style.width      = `${newWidth+(fontSize + 20)}px`;
+      conditionsContainer.style.width = `${newWidth+10}px`;
+      windContainer.style.width       = `${newWidth+10}px`;
+    }
+  } else {  
+    this.forecastItems = Math.round((card.offsetWidth) / (fontSize + 20)-1);
+  }
   this.drawChart();
 }
 
@@ -18424,7 +18481,7 @@ drawChart({ config, language, weather, forecastItems } = this) {
       animation: config.forecast.disable_animation === true ? { duration: 0 } : {},
       layout: {
         padding: {
-          bottom: 10,
+          bottom: 10
         },
       },
       scales: {
@@ -18447,8 +18504,7 @@ drawChart({ config, language, weather, forecastItems } = this) {
         
                   var timeFormatOptions = {
                       hour12: config.use_12hour_format,
-                      hour: 'numeric',
-                      ...(config.use_12hour_format ? {} : { minute: 'numeric' }),
+                      hour: 'numeric'
                   };
 
                   var time = dateObj.toLocaleTimeString(language, timeFormatOptions);
@@ -18532,17 +18588,17 @@ drawChart({ config, language, weather, forecastItems } = this) {
                 hour12: config.use_12hour_format,
               });
             },
-    label: function (context) {
-      var label = context.dataset.label;
-      var value = context.formattedValue;
-      var probability = data.forecast[context.dataIndex].precipitation_probability;
-      var unit = context.datasetIndex === 2 ? precipUnit : tempUnit;
-
-      if (config.forecast.precipitation_type === 'rainfall' && context.datasetIndex === 2 && config.forecast.show_probability && probability !== undefined && probability !== null) {
-        return label + ': ' + value + precipUnit + ' / ' + Math.round(probability) + '%';
-      } else {
-        return label + ': ' + value + unit;
-      }
+            label: function (context) {
+              var label = context.dataset.label;
+              var value = context.formattedValue;
+              var probability = data.forecast[context.dataIndex].precipitation_probability;
+              var unit = context.datasetIndex === 2 ? precipUnit : tempUnit;
+        
+              if (config.forecast.precipitation_type === 'rainfall' && context.datasetIndex === 2 && config.forecast.show_probability && probability !== undefined && probability !== null) {
+                return label + ': ' + value + precipUnit + ' / ' + Math.round(probability) + '%';
+              } else {
+                return label + ': ' + value + unit;
+              }
             },
           },
         },
@@ -18568,14 +18624,14 @@ computeForecastData({ config, forecastItems } = this) {
       }
     }
     if (config.forecast.type === 'twice_daily' ) {
-	dateTime.push(d.datetime);
-	if (d.is_daytime || this.mode == 'hourly') {
-	  tempHigh.push(d.temperature);
-	  tempLow.push(null);
-	} else {
-	  tempHigh.push(null);
-	  tempLow.push(d.temperature);
-	}
+      dateTime.push(d.datetime);
+      if (d.is_daytime || this.mode == 'hourly') {
+        tempHigh.push(d.temperature);
+        tempLow.push(null);
+      } else {
+        tempHigh.push(null);
+        tempLow.push(d.temperature);
+      }
     } else {
       dateTime.push(d.datetime);
       tempHigh.push(d.temperature);
@@ -18693,37 +18749,41 @@ updateChart({ forecasts, forecastChart } = this) {
           justify-content: space-between;
           align-items: center;
           margin-bottom: 6px;
-	  font-weight: 300;
+	        font-weight: 300;
         }
         .chart-container {
           position: relative;
           height: ${config.forecast.chart_height}px;
-          width: 100%;
+          //width: 450px;
+        }
+        .forecast-container {
+          max-width: 100%;
         }
         .conditions {
           display: flex;
           justify-content: space-around;
           align-items: center;
-          margin: 0px 5px 0px 5px;
-	  cursor: pointer;
+          padding: 0px 0px 0px 10px;
+	        cursor: pointer;
         }
         .forecast-item {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin: 1px;
+          //display: flex;
+          //flex-direction: column;
+          //align-items: center;
+          //margin: 1px;
         }
         .wind-details {
           display: flex;
           justify-content: space-around;
           align-items: center;
           font-weight: 300;
+          padding: 0px 0px 0px 10px;
         }
         .wind-detail {
           display: flex;
           align-items: center;
           margin: 1px;
-	  flex-wrap: wrap;
+          flex-wrap: wrap;
         }
         .wind-detail ha-icon {
           --mdc-icon-size: 15px;
@@ -18775,11 +18835,13 @@ updateChart({ forecasts, forecastChart } = this) {
         <div class="card">
           ${this.renderMain()}
           ${this.renderAttributes()}
-          <div class="chart-container">
-            <canvas id="forecastChart"></canvas>
+          <div class="forecast-container">
+            <div class="chart-container">
+              <canvas id="forecastChart"></canvas>
+            </div>
+            ${this.renderForecastConditionIcons()}
+            ${this.renderWind()}
           </div>
-          ${this.renderForecastConditionIcons()}
-          ${this.renderWind()}
           ${this.renderLastUpdated()}
         </div>
       </ha-card>
@@ -19136,7 +19198,6 @@ renderWind({ config, weather, windSpeed, windDirection, forecastItems } = this) 
             <div class="wind-detail">
               <ha-icon class="wind-icon" icon="hass:${this.getWindDirIcon(item.wind_bearing)}"></ha-icon>
               <span class="wind-speed">${dWindSpeed}</span>
-              <span class="wind-unit">${this.ll('units')[this.unitSpeed]}</span>
             </div>
           `;
         })}
