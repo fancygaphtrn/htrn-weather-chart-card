@@ -876,7 +876,7 @@ const ALT_SCHEMA = [
   { name: "option3", title: "Alternative sensor 1", selector: { entity: { domain: 'sensor' } } },
 ];
 
-class WeatherChartCardEditor extends s {
+class HTRNWeatherChartCardEditor extends s {
   static get properties() {
     return {
       _config: { type: Object },
@@ -1683,7 +1683,7 @@ class WeatherChartCardEditor extends s {
     `;
   }
 }
-customElements.define("weather-chart-card-editor", WeatherChartCardEditor);
+customElements.define("HTRN-weather-chart-card-editor", HTRNWeatherChartCardEditor);
 
 /**
  * @license
@@ -17846,7 +17846,7 @@ Chart.register(...registerables, plugin);
 class WeatherChartCard extends s {
 
 static getConfigElement() {
-  return document.createElement("weather-chart-card-editor");
+  return document.createElement("htrn-weather-chart-card-editor");
 }
 
 static getStubConfig(hass, unusedEntities, allEntities) {
