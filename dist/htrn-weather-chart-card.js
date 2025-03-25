@@ -18099,7 +18099,7 @@ measureCard() {
       const conditionsContainer = this.shadowRoot.querySelector('.conditions');
       const windContainer       = this.shadowRoot.querySelector('.wind-details');
 
-      const newWidth = (fontSize + 20) * this.forecasts.length;
+      let newWidth = (fontSize + 20) * this.forecasts.length;
       if (newWidth < card.offsetWidth){
         newWidth = card.offsetWidth;
       }
