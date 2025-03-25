@@ -824,4 +824,4 @@ class HTRNWeatherChartCardEditor extends LitElement {
     `;
   }
 }
-customElements.define("HTRN-weather-chart-card-editor", HTRNWeatherChartCardEditor);
+customElements.define("htrn-weather-chart-card-editor", HTRNWeatherChartCardEditor);
