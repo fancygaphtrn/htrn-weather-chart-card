@@ -1,6 +1,6 @@
 <h1 align="center">Weather Chart Card</h1>
 <h2 align="center">Updated to support twice_daily forecasts along with option display of sensors in the attributes section.<br/>
-Setting number of forecasts to a high number will make the forecast area horiz. scrollable so man forcasts can be seen.   Useful for hourly forecasts.
+Setting number of forecasts to a high number will make the forecast area horiz. scrollable so many forcasts can be seen.   Useful for hourly forecasts.
 </h2>
 
 [![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mlamberts7I)
