@@ -17843,7 +17843,7 @@ var plugin = {
 
 Chart.register(...registerables, plugin);
 
-class WeatherChartCard extends s {
+class HTRNWeatherChartCard extends s {
 
 static getConfigElement() {
   return document.createElement("htrn-weather-chart-card-editor");
@@ -19261,13 +19261,13 @@ renderLastUpdated() {
   }
 }
 
-customElements.define('weather-chart-card', WeatherChartCard);
+customElements.define('htrn-weather-chart-card', HTRNWeatherChartCard);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: "weather-chart-card",
-  name: "Weather Chart Card",
+  type: "htrn-weather-chart-card",
+  name: "HTRN Weather Chart Card",
   description: "A custom weather card with chart.",
   preview: true,
-  documentationURL: "https://github.com/mlamberts78/weather-chart-card",
+  documentationURL: "https://github.com/fancygaphtrn/htrn-weather-chart-card",
 });
