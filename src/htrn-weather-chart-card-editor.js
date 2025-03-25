@@ -17,7 +17,7 @@ const ALT_SCHEMA = [
   { name: "option3", title: "Alternative sensor 1", selector: { entity: { domain: 'sensor' } } },
 ];
 
-class WeatherChartCardEditor extends LitElement {
+class HTRNWeatherChartCardEditor extends LitElement {
   static get properties() {
     return {
       _config: { type: Object },
@@ -824,4 +824,4 @@ class WeatherChartCardEditor extends LitElement {
     `;
   }
 }
-customElements.define("weather-chart-card-editor", WeatherChartCardEditor);
+customElements.define("HTRN-weather-chart-card-editor", HTRNWeatherChartCardEditor);
