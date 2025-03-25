@@ -148,7 +148,7 @@ set hass(hass) {
     ? hass.states[this.config.entity]
     : null;
   if (!this.weather || this.weather.state == "unavailable") {
-    this.weather = null
+    this.weather = null;
   }
   if (this.weather) {
     this.temperature = this.config.temp ? hass.states[this.config.temp].state : this.weather.attributes.temperature;
@@ -180,8 +180,7 @@ set hass(hass) {
 }
 
 subscribeForecastEvents() {
-  const forecastType = this.config.forecast.type || 'daily';
-  const isHourly = forecastType === 'hourly';
+  this.config.forecast.type || 'daily';
 
   //const feature = isHourly ? WeatherEntityFeature.FORECAST_HOURLY : WeatherEntityFeature.FORECAST_DAILY;
   //if (!this.supportsFeature(feature)) {
@@ -248,11 +247,13 @@ subscribeForecastEvents() {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
       this.resizeObserver = null;
+      this.resizeInitialized = false;
     }
   }
 
 measureCard() {
-  const card = this.shadowRoot.querySelector('ha-card');
+  const hacard = this.shadowRoot.querySelector('ha-card');
+  const card = hacard.querySelector('.forecast-container');
   let fontSize = this.config.forecast.labels_font_size;
   const numberOfForecasts = this.config.forecast.number_of_forecasts || 0;
 
@@ -260,7 +261,28 @@ measureCard() {
     return;
   }
 
-  this.forecastItems = numberOfForecasts > 0 ? numberOfForecasts : Math.round((card.offsetWidth - 36) / (fontSize * 2.5)-1);
+  if (numberOfForecasts > 0) {
+    this.forecastItems = numberOfForecasts;
+    if (this.forecasts) {
+      const forecastContainer   = this.shadowRoot.querySelector('.forecast-container');
+      const chartContainer      = this.shadowRoot.querySelector('.chart-container');
+      const conditionsContainer = this.shadowRoot.querySelector('.conditions');
+      const windContainer       = this.shadowRoot.querySelector('.wind-details');
+
+      const newWidth = (fontSize + 20) * this.forecasts.length;
+      if (newWidth < card.offsetWidth){
+        newWidth = card.offsetWidth
+      }
+      forecastContainer.style.width     = `${newWidth}px`;
+      forecastContainer.style.overflowX = 'scroll';
+      
+      chartContainer.style.width      = `${newWidth+(fontSize + 20)}px`;
+      conditionsContainer.style.width = `${newWidth+10}px`;
+      windContainer.style.width       = `${newWidth+10}px`;
+    }
+  } else {  
+    this.forecastItems = Math.round((card.offsetWidth) / (fontSize + 20)-1);
+  }
   this.drawChart();
 }
 
@@ -629,7 +651,7 @@ drawChart({ config, language, weather, forecastItems } = this) {
       animation: config.forecast.disable_animation === true ? { duration: 0 } : {},
       layout: {
         padding: {
-          bottom: 10,
+          bottom: 10
         },
       },
       scales: {
@@ -652,8 +674,7 @@ drawChart({ config, language, weather, forecastItems } = this) {
         
                   var timeFormatOptions = {
                       hour12: config.use_12hour_format,
-                      hour: 'numeric',
-                      ...(config.use_12hour_format ? {} : { minute: 'numeric' }),
+                      hour: 'numeric'
                   };
 
                   var time = dateObj.toLocaleTimeString(language, timeFormatOptions);
@@ -737,17 +758,17 @@ drawChart({ config, language, weather, forecastItems } = this) {
                 hour12: config.use_12hour_format,
               });
             },
-    label: function (context) {
-      var label = context.dataset.label;
-      var value = context.formattedValue;
-      var probability = data.forecast[context.dataIndex].precipitation_probability;
-      var unit = context.datasetIndex === 2 ? precipUnit : tempUnit;
-
-      if (config.forecast.precipitation_type === 'rainfall' && context.datasetIndex === 2 && config.forecast.show_probability && probability !== undefined && probability !== null) {
-        return label + ': ' + value + precipUnit + ' / ' + Math.round(probability) + '%';
-      } else {
-        return label + ': ' + value + unit;
-      }
+            label: function (context) {
+              var label = context.dataset.label;
+              var value = context.formattedValue;
+              var probability = data.forecast[context.dataIndex].precipitation_probability;
+              var unit = context.datasetIndex === 2 ? precipUnit : tempUnit;
+        
+              if (config.forecast.precipitation_type === 'rainfall' && context.datasetIndex === 2 && config.forecast.show_probability && probability !== undefined && probability !== null) {
+                return label + ': ' + value + precipUnit + ' / ' + Math.round(probability) + '%';
+              } else {
+                return label + ': ' + value + unit;
+              }
             },
           },
         },
@@ -773,14 +794,14 @@ computeForecastData({ config, forecastItems } = this) {
       }
     }
     if (config.forecast.type === 'twice_daily' ) {
-	dateTime.push(d.datetime);
-	if (d.is_daytime || this.mode == 'hourly') {
-	  tempHigh.push(d.temperature);
-	  tempLow.push(null);
-	} else {
-	  tempHigh.push(null);
-	  tempLow.push(d.temperature);
-	}
+      dateTime.push(d.datetime);
+      if (d.is_daytime || this.mode == 'hourly') {
+        tempHigh.push(d.temperature);
+        tempLow.push(null);
+      } else {
+        tempHigh.push(null);
+        tempLow.push(d.temperature);
+      }
     } else {
       dateTime.push(d.datetime);
       tempHigh.push(d.temperature);
@@ -837,10 +858,10 @@ updateChart({ forecasts, forecastChart } = this) {
 
   render({config, _hass, weather} = this) {
     if (!config || !_hass) {
-      return html``;
+      return x``;
     }
     if (!weather || !weather.attributes) {
-      return html`
+      return x`
         <style>
           .card {
             padding-top: ${config.title? '0px' : '16px'};
@@ -856,7 +877,7 @@ updateChart({ forecasts, forecastChart } = this) {
         </ha-card>
       `;
     }
-    return html`
+    return x`
       <style>
         ha-icon {
           color: var(--paper-item-icon-color);
@@ -898,37 +919,41 @@ updateChart({ forecasts, forecastChart } = this) {
           justify-content: space-between;
           align-items: center;
           margin-bottom: 6px;
-	  font-weight: 300;
+	        font-weight: 300;
         }
         .chart-container {
           position: relative;
           height: ${config.forecast.chart_height}px;
-          width: 100%;
+          //width: 450px;
+        }
+        .forecast-container {
+          max-width: 100%;
         }
         .conditions {
           display: flex;
           justify-content: space-around;
           align-items: center;
-          margin: 0px 5px 0px 5px;
-	  cursor: pointer;
+          padding: 0px 0px 0px 10px;
+	        cursor: pointer;
         }
         .forecast-item {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin: 1px;
+          //display: flex;
+          //flex-direction: column;
+          //align-items: center;
+          //margin: 1px;
         }
         .wind-details {
           display: flex;
           justify-content: space-around;
           align-items: center;
           font-weight: 300;
+          padding: 0px 0px 0px 10px;
         }
         .wind-detail {
           display: flex;
           align-items: center;
           margin: 1px;
-	  flex-wrap: wrap;
+          flex-wrap: wrap;
         }
         .wind-detail ha-icon {
           --mdc-icon-size: 15px;
@@ -980,11 +1005,13 @@ updateChart({ forecasts, forecastChart } = this) {
         <div class="card">
           ${this.renderMain()}
           ${this.renderAttributes()}
-          <div class="chart-container">
-            <canvas id="forecastChart"></canvas>
+          <div class="forecast-container">
+            <div class="chart-container">
+              <canvas id="forecastChart"></canvas>
+            </div>
+            ${this.renderForecastConditionIcons()}
+            ${this.renderWind()}
           </div>
-          ${this.renderForecastConditionIcons()}
-          ${this.renderWind()}
           ${this.renderLastUpdated()}
         </div>
       </ha-card>
@@ -993,7 +1020,7 @@ updateChart({ forecasts, forecastChart } = this) {
 
 renderMain({ config, sun, weather, temperature, feels_like, description } = this) {
   if (config.show_main === false)
-    return html``;
+    return x``;
 
   const use12HourFormat = config.use_12hour_format;
   const showTime = config.show_time;
@@ -1016,8 +1043,8 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
   }
 
   const iconHtml = config.animated_icons || config.icons
-    ? html`<img src="${this.getWeatherIcon(weather.state, sun.state)}" alt="">`
-    : html`<ha-icon icon="${this.getWeatherIcon(weather.state, sun.state)}"></ha-icon>`;
+    ? x`<img src="${this.getWeatherIcon(weather.state, sun.state)}" alt="">`
+    : x`<ha-icon icon="${this.getWeatherIcon(weather.state, sun.state)}"></ha-icon>`;
 
   const updateClock = () => {
     const currentDate = new Date();
@@ -1058,35 +1085,35 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
     setInterval(updateClock, 1000);
   }
 
-  return html`
+  return x`
     <div class="main">
       ${iconHtml}
       <div>
         <div>
-          ${showTemperature ? html`${roundedTemperature}<span>${this.getUnit('temperature')}</span>` : ''}
-          ${showFeelsLike && roundedFeelsLike ? html`
+          ${showTemperature ? x`${roundedTemperature}<span>${this.getUnit('temperature')}</span>` : ''}
+          ${showFeelsLike && roundedFeelsLike ? x`
             <div class="feels-like">
               ${this.ll('feelsLike')}
               ${roundedFeelsLike}${this.getUnit('temperature')}
             </div>
           ` : ''}
-          ${showCurrentCondition ? html`
+          ${showCurrentCondition ? x`
             <div class="current-condition">
               <span>${this.ll(weather.state)}</span>
             </div>
           ` : ''}
-          ${showDescription ? html`
+          ${showDescription ? x`
             <div class="description">
               ${description}
             </div>
           ` : ''}
         </div>
-        ${showTime ? html`
+        ${showTime ? x`
           <div class="current-time">
             <div id="digital-clock"></div>
-            ${showDay ? html`<div class="date-text day"></div>` : ''}
-            ${showDay && showDate ? html` ` : ''}
-            ${showDate ? html`<div class="date-text date"></div>` : ''}
+            ${showDay ? x`<div class="date-text day"></div>` : ''}
+            ${showDay && showDate ? x` ` : ''}
+            ${showDate ? x`<div class="date-text date"></div>` : ''}
           </div>
         ` : ''}
       </div>
@@ -1152,7 +1179,7 @@ renderAttributes({ config, humidity, pressure, windSpeed, windDirection, sun, la
   }
 
   if (config.show_attributes == false)
-    return html``;
+    return x``;
 
   const showHumidity = config.show_humidity !== false;
   const showPressure = config.show_pressure !== false;
@@ -1163,54 +1190,54 @@ renderAttributes({ config, humidity, pressure, windSpeed, windDirection, sun, la
   const showWindgustspeed = config.show_wind_gust_speed == true;
   const showVisibility = config.show_visibility == true;
 
-return html`
+return x`
     <div class="attributes">
-      ${((showHumidity && humidity !== undefined) || (showPressure && dPressure !== undefined) || (showDewpoint && dew_point !== undefined) || (showVisibility && visibility !== undefined)) ? html`
+      ${((showHumidity && humidity !== undefined) || (showPressure && dPressure !== undefined) || (showDewpoint && dew_point !== undefined) || (showVisibility && visibility !== undefined)) ? x`
         <div>
-          ${showHumidity && humidity !== undefined ? html`
+          ${showHumidity && humidity !== undefined ? x`
             <ha-icon icon="hass:water-percent"></ha-icon> ${humidity} %<br>
           ` : ''}
-          ${showPressure && dPressure !== undefined ? html`
+          ${showPressure && dPressure !== undefined ? x`
             <ha-icon icon="hass:gauge"></ha-icon> ${dPressure} ${this.ll('units')[this.unitPressure]} <br>
           ` : ''}
-          ${showDewpoint && dew_point !== undefined ? html`
+          ${showDewpoint && dew_point !== undefined ? x`
             <ha-icon icon="hass:thermometer-water"></ha-icon> ${dew_point} ${this.weather.attributes.temperature_unit} <br>
           ` : ''}
-          ${showVisibility && visibility !== undefined ? html`
+          ${showVisibility && visibility !== undefined ? x`
             <ha-icon icon="hass:eye"></ha-icon> ${visibility} ${this.weather.attributes.visibility_unit} <br>
           ` : ''}
-          ${ option1 ? html`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
+          ${ option1 ? x`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
 	</div>
       ` : ''}
-      ${((showSun && sun !== undefined) || (typeof uv_index !== 'undefined' && uv_index !== undefined)) ? html`
+      ${((showSun && sun !== undefined) || (typeof uv_index !== 'undefined' && uv_index !== undefined)) ? x`
         <div>
-          ${typeof uv_index !== 'undefined' && uv_index !== undefined ? html`
+          ${typeof uv_index !== 'undefined' && uv_index !== undefined ? x`
             <div>
               <ha-icon icon="hass:white-balance-sunny"></ha-icon> UV: ${Math.round(uv_index * 10) / 10}
             </div>
           ` : ''}
-          ${showSun && sun !== undefined ? html`
+          ${showSun && sun !== undefined ? x`
             <div>
               ${this.renderSun({ sun, language })}
             </div>
           ` : ''}
-          ${ option2 ? html`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
+          ${ option2 ? x`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
 	</div>
       ` : ''}
-      ${((showWindDirection && windDirection !== undefined) || (showWindSpeed && dWindSpeed !== undefined)) ? html`
+      ${((showWindDirection && windDirection !== undefined) || (showWindSpeed && dWindSpeed !== undefined)) ? x`
         <div>
-          ${showWindDirection && windDirection !== undefined ? html`
+          ${showWindDirection && windDirection !== undefined ? x`
             <ha-icon icon="hass:${this.getWindDirIcon(windDirection)}"></ha-icon> ${this.getWindDir(windDirection)} <br>
           ` : ''}
-          ${showWindSpeed && dWindSpeed !== undefined ? html`
+          ${showWindSpeed && dWindSpeed !== undefined ? x`
             <ha-icon icon="hass:weather-windy"></ha-icon>
             ${dWindSpeed} ${this.ll('units')[this.unitSpeed]} <br>
           ` : ''}
-          ${showWindgustspeed && wind_gust_speed !== undefined ? html`
+          ${showWindgustspeed && wind_gust_speed !== undefined ? x`
             <ha-icon icon="hass:weather-windy-variant"></ha-icon>
             ${wind_gust_speed} ${this.ll('units')[this.unitSpeed]} <br>
           ` : ''}
-          ${ option3 ? html`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
+          ${ option3 ? x`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
 	</div>
       ` : ''}
     </div>
@@ -1219,7 +1246,7 @@ return html`
 
 renderSun({ sun, language, config } = this) {
   if (sun == undefined) {
-    return html``;
+    return x``;
   }
 
 const use12HourFormat = this.config.use_12hour_format;
@@ -1229,7 +1256,7 @@ const timeOptions = {
     minute: 'numeric'
 };
 
-  return html`
+  return x`
     <ha-icon icon="mdi:weather-sunset-up"></ha-icon>
       ${new Date(sun.attributes.next_rising).toLocaleTimeString(language, timeOptions)}<br>
     <ha-icon icon="mdi:weather-sunset-down"></ha-icon>
@@ -1241,10 +1268,10 @@ renderForecastConditionIcons({ config, forecastItems, sun } = this) {
   const forecast = this.forecasts ? this.forecasts.slice(0, forecastItems) : [];
 
   if (config.forecast.condition_icons === false) {
-    return html``;
+    return x``;
   }
 
-  return html`
+  return x`
     <div class="conditions" @click="${(e) => this.showMoreInfo(config.entity)}">
       ${forecast.map((item) => {
         const forecastTime = new Date(item.datetime);
@@ -1281,12 +1308,12 @@ renderForecastConditionIcons({ config, forecastItems, sun } = this) {
           const iconSrc = config.animated_icons ?
             `${this.baseIconPath}${weatherIcons[condition]}.svg` :
             `${this.config.icons}${weatherIcons[condition]}.svg`;
-          iconHtml = html`<img class="icon" src="${iconSrc}" alt="">`;
+          iconHtml = x`<img class="icon" src="${iconSrc}" alt="">`;
         } else {
-          iconHtml = html`<ha-icon icon="${this.getWeatherIcon(condition, sun.state)}"></ha-icon>`;
+          iconHtml = x`<ha-icon icon="${this.getWeatherIcon(condition, sun.state)}"></ha-icon>`;
         }
 
-        return html`
+        return x`
           <div class="forecast-item">
             ${iconHtml}
           </div>
@@ -1300,14 +1327,14 @@ renderWind({ config, weather, windSpeed, windDirection, forecastItems } = this) 
   const showWindForecast = config.forecast.show_wind_forecast !== false;
 
   if (!showWindForecast) {
-    return html``;
+    return x``;
   }
 
   const forecast = this.forecasts ? this.forecasts.slice(0, forecastItems) : [];
 
-  return html`
+  return x`
     <div class="wind-details">
-      ${showWindForecast ? html`
+      ${showWindForecast ? x`
         ${forecast.map((item) => {
           let dWindSpeed = item.wind_speed;
 
@@ -1337,11 +1364,10 @@ renderWind({ config, weather, windSpeed, windDirection, forecastItems } = this) 
             dWindSpeed = Math.round(dWindSpeed);
           }
 
-          return html`
+          return x`
             <div class="wind-detail">
               <ha-icon class="wind-icon" icon="hass:${this.getWindDirIcon(item.wind_bearing)}"></ha-icon>
               <span class="wind-speed">${dWindSpeed}</span>
-              <span class="wind-unit">${this.ll('units')[this.unitSpeed]}</span>
             </div>
           `;
         })}
@@ -1374,10 +1400,10 @@ renderLastUpdated() {
   const showLastUpdated = this.config.show_last_changed == true;
 
   if (!showLastUpdated) {
-    return html``;
+    return x``;
   }
 
-  return html`
+  return x`
     <div class="updated">
       <div>
         ${formattedLastUpdated}
