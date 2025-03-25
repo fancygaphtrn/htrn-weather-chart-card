@@ -4,13 +4,13 @@ Setting number of forecasts to a high number will make the forecast area horiz. 
 </h2>
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-41BDF5.svg)](https://github.com/hacs/integration)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/mlamberts78/weather-chart-card?style=flat-square)](https://github.com/mlamberts78/weather-chart-card/releases/latest)
-![GitHub downloads](https://img.shields.io/github/downloads/mlamberts78/weather-chart-card/total?style=flat-square)
-![GitHub release (latest by SemVer including pre-releases)](https://img.shields.io/github/downloads/mlamberts78/weather-chart-card/latest/total)
-[![HACS Validate](https://github.com/mlamberts78/weather-chart-card/actions/workflows/validate.yaml/badge.svg)](https://github.com/mlamberts78/weather-chart-card/actions/workflows/validate.yaml)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/fancygaphtrn/htrn-weather-chart-card?style=flat-square)](https://github.com/fancygaphtrn/htrn-weather-chart-card/releases/latest)
+![GitHub downloads](https://img.shields.io/github/downloads/fancygaphtrn/htrn-weather-chart-card/total?style=flat-square)
+![GitHub release (latest by SemVer including pre-releases)](https://img.shields.io/github/downloads/fancygaphtrn/htrn-weather-chart-card/latest/total)
+[![HACS Validate](https://github.com/fancygaphtrn/htrn-weather-chart-card/actions/workflows/validate.yaml/badge.svg)](https://github.com/fancygaphtrn/htrn-weather-chart-card/actions/workflows/validate.yaml)
 
-![weather-chart-card](https://github.com/mlamberts78/weather-chart-card/assets/93537082/bd5b9f6e-4125-4a19-9773-463e6d054bce)
-![15-days](https://github.com/mlamberts78/weather-chart-card/assets/93537082/f4de6060-7005-4a6d-b1f3-3aa17c856c73)
+![weather-chart-card](https://github.com/fancygaphtrn/htrn-weather-chart-card/assets/93537082/bd5b9f6e-4125-4a19-9773-463e6d054bce)
+![15-days](https://github.com/fancygaphtrn/htrn-weather-chart-card/assets/93537082/f4de6060-7005-4a6d-b1f3-3aa17c856c73)
 
 ## Installation
 
