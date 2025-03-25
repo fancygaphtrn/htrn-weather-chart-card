@@ -1683,7 +1683,7 @@ class HTRNWeatherChartCardEditor extends s {
     `;
   }
 }
-customElements.define("HTRN-weather-chart-card-editor", HTRNWeatherChartCardEditor);
+customElements.define("htrn-weather-chart-card-editor", HTRNWeatherChartCardEditor);
 
 /**
  * @license
