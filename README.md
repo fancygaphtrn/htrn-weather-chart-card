@@ -31,7 +31,7 @@ lovelace:
 
 | Name                  | Type    | Default                  | Description                                                                                        |
 | ----------------------| ------- | -------------------------|--------------------------------------------------------------------------------------------------- |
-| type                  | string  | **Required**             | Should be `custom:weather-chart-card`.                                                             |
+| type                  | string  | **Required**             | Should be `custom:htrn-weather-chart-card`.                                                             |
 | entity                | string  | **Required**             | An entity_id with the `weather` domain.                                                            |
 | temp                  | string  | none                     | An entity_id for a custom temperature sensor.                                                      |
 | press                 | string  | none                     | An entity_id for a custom pressure sensor.                                                         |
@@ -99,7 +99,7 @@ lovelace:
 | round_temp           | boolean | false                    | Option for rounding the forecast temperatures                                                      |
 | style                | string  | style1                   | Change chart style, options: 'style1' or 'style2'                                                  |
 | type                 | string  | daily                    | Show daily or hourly forecast if available, options: 'twice_daily', 'daily' or 'hourly'                           |
-| number_of_forecasts  | number  | 0                        | Overrides the number of forecasts to display. Set to "0" for automatic mode.                       |
+| number_of_forecasts  | number  | 0                        | Overrides the number of forecasts to display. Set to "0" for automatic mode. Set to high number and the forecast area will be scrollable  |
 | disable_animation    | boolean | false                    | Disable the chart animation.                                                                       |
 
 ##### Units of measurement
@@ -117,7 +117,7 @@ Icons should be in svg format. Icons should have names as shown [here](https://g
 ###### Card with current time, date and day
 ![date-time](https://github.com/mlamberts78/weather-chart-card/assets/93537082/ab2c32f7-8c6a-4a7e-84fc-f857a519a725)
 ```yaml
-type: custom:weather-chart-card
+type: custom:htrn-weather-chart-card
 entity: weather.weather_home
 show_time: true
 show_day: true
@@ -129,7 +129,7 @@ icon_style: style1
 ###### Style2 chart
 ![style2](https://github.com/mlamberts78/weather-chart-card/assets/93537082/3067cc43-0e80-492c-b4a5-771b1e44ea17)
 ```yaml
-type: custom:weather-chart-card
+type: custom:htrn-weather-chart-card
 entity: weather.my_home
 forecast:
   style: style2
@@ -137,7 +137,7 @@ forecast:
 ###### Chart only
 ![Chart-only](https://github.com/mlamberts78/weather-chart-card/assets/93537082/c99d85a4-30d1-4fd9-90ff-877421b39e9b)
 ```yaml
-type: custom:weather-chart-card
+type: custom:htrn-weather-chart-card
 entity: weather.my_home
 show_main: false
 show_attributes: false
@@ -149,7 +149,7 @@ forecast:
 ###### Custom units
 ![Units](https://github.com/mlamberts78/weather-chart-card/assets/93537082/e72862ee-9bb7-4f97-9a3c-b17663c458aa)
 ```yaml
-type: custom:weather-chart-card
+type: custom:htrn-weather-chart-card
 entity: weather.my_home
 units:
   pressure: mmHg
