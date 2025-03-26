@@ -18511,7 +18511,11 @@ drawChart({ config, language, weather, forecastItems } = this) {
                   var time = dateObj.toLocaleTimeString(language, timeFormatOptions);
 
                   if (dateObj.getHours() === 0 && dateObj.getMinutes() === 0 && config.forecast.type === 'hourly') {
-                      var date = dateObj.toLocaleString(language, { weekday: 'short' }).toUpperCase();
+                      var dateFormatOptions = {
+                          day: 'numeric',
+                          month: 'short',
+                      };
+                      var date = dateObj.toLocaleDateString(language, dateFormatOptions);
                       time = time.replace('a.m.', 'AM').replace('p.m.', 'PM');
                       return [date, time];
                   }
