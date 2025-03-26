@@ -18106,9 +18106,9 @@ measureCard() {
         forecastContainer.style.width     = `${newWidth}px`;
         forecastContainer.style.overflowX = 'scroll';
         
-        chartContainer.style.width      = `${newWidth+(fontSize * 2.5) + 5}px`;
-        conditionsContainer.style.width = `${newWidth+10}px`;
-        windContainer.style.width       = `${newWidth+10}px`;
+        chartContainer.style.width      = `${newWidth + (fontSize * 2.5) + 5}px`;
+        conditionsContainer.style.width = `${newWidth + (fontSize * 2)}px`;
+        windContainer.style.width       = `${newWidth + (fontSize * 2)}px`;
       }
     }
   } else {  
@@ -18764,8 +18764,8 @@ updateChart({ forecasts, forecastChart } = this) {
           display: flex;
           justify-content: space-around;
           align-items: center;
-          padding: 0px 0px 0px 10px;
-	        cursor: pointer;
+          padding: 0px 0px 0px ${config.forecast.labels_font_size / 2}px;
+          cursor: pointer;
         }
         .forecast-item {
           //display: flex;
