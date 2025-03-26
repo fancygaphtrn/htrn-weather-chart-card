@@ -18099,16 +18099,17 @@ measureCard() {
       const conditionsContainer = this.shadowRoot.querySelector('.conditions');
       const windContainer       = this.shadowRoot.querySelector('.wind-details');
 
-      let newWidth = (fontSize + 20) * this.forecasts.length;
+      let newWidth = (fontSize + 20) * Math.min(this.forecasts.length, this.forecastItems);
       if (newWidth < card.offsetWidth){
         newWidth = card.offsetWidth;
+      } else {
+        forecastContainer.style.width     = `${newWidth}px`;
+        forecastContainer.style.overflowX = 'scroll';
+        
+        chartContainer.style.width      = `${newWidth+(fontSize * 2.5) + 5}px`;
+        conditionsContainer.style.width = `${newWidth+10}px`;
+        windContainer.style.width       = `${newWidth+10}px`;
       }
-      forecastContainer.style.width     = `${newWidth}px`;
-      forecastContainer.style.overflowX = 'scroll';
-      
-      chartContainer.style.width      = `${newWidth+(fontSize + 20)}px`;
-      conditionsContainer.style.width = `${newWidth+10}px`;
-      windContainer.style.width       = `${newWidth+10}px`;
     }
   } else {  
     this.forecastItems = Math.round((card.offsetWidth) / (fontSize + 20)-1);
