@@ -289,7 +289,7 @@ measureCard() {
 
 ll(str) {
   const selectedLocale = this.config.locale || this.language || 'en';
-  return locale[selectedLocale]?.[str] || locale.en[str] || str;
+  return locale[selectedLocale][str] || locale.en[str] || str;
 }
 
 getCardSize() {
