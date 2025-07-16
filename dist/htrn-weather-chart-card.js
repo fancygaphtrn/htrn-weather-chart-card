@@ -851,7 +851,7 @@ const t$1=window,e$2=t$1.ShadowRoot&&(void 0===t$1.ShadyCSS||t$1.ShadyCSS.native
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-var t;const i=window,s$1=i.trustedTypes,e=s$1?s$1.createPolicy("lit-html",{createHTML:t=>t}):void 0,o$1="$lit$",n$2=`lit$${(Math.random()+"").slice(9)}$`,l$1="?"+n$2,h=`<${l$1}>`,r=document,u=()=>r.createComment(""),d=t=>null===t||"object"!=typeof t&&"function"!=typeof t,c=Array.isArray,v=t=>c(t)||"function"==typeof(null==t?void 0:t[Symbol.iterator]),a="[ \t\n\f\r]",f=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,_=/-->/g,m=/>/g,p=RegExp(`>|${a}(?:([^\\s"'>=/]+)(${a}*=${a}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),g=/'/g,$=/"/g,y=/^(?:script|style|textarea|title)$/i,w=t=>(i,...s)=>({_$litType$:t,strings:i,values:s}),x$1=w(1),T=Symbol.for("lit-noChange"),A=Symbol.for("lit-nothing"),E=new WeakMap,C=r.createTreeWalker(r,129,null,false);function P(t,i){if(!Array.isArray(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==e?e.createHTML(i):i}const V=(t,i)=>{const s=t.length-1,e=[];let l,r=2===i?"<svg>":"",u=f;for(let i=0;i<s;i++){const s=t[i];let d,c,v=-1,a=0;for(;a<s.length&&(u.lastIndex=a,c=u.exec(s),null!==c);)a=u.lastIndex,u===f?"!--"===c[1]?u=_:void 0!==c[1]?u=m:void 0!==c[2]?(y.test(c[2])&&(l=RegExp("</"+c[2],"g")),u=p):void 0!==c[3]&&(u=p):u===p?">"===c[0]?(u=null!=l?l:f,v=-1):void 0===c[1]?v=-2:(v=u.lastIndex-c[2].length,d=c[1],u=void 0===c[3]?p:'"'===c[3]?$:g):u===$||u===g?u=p:u===_||u===m?u=f:(u=p,l=void 0);const w=u===p&&t[i+1].startsWith("/>")?" ":"";r+=u===f?s+h:v>=0?(e.push(d),s.slice(0,v)+o$1+s.slice(v)+n$2+w):s+n$2+(-2===v?(e.push(void 0),i):w);}return [P(t,r+(t[s]||"<?>")+(2===i?"</svg>":"")),e]};class N{constructor({strings:t,_$litType$:i},e){let h;this.parts=[];let r=0,d=0;const c=t.length-1,v=this.parts,[a,f]=V(t,i);if(this.el=N.createElement(a,e),C.currentNode=this.el.content,2===i){const t=this.el.content,i=t.firstChild;i.remove(),t.append(...i.childNodes);}for(;null!==(h=C.nextNode())&&v.length<c;){if(1===h.nodeType){if(h.hasAttributes()){const t=[];for(const i of h.getAttributeNames())if(i.endsWith(o$1)||i.startsWith(n$2)){const s=f[d++];if(t.push(i),void 0!==s){const t=h.getAttribute(s.toLowerCase()+o$1).split(n$2),i=/([.?@])?(.*)/.exec(s);v.push({type:1,index:r,name:i[2],strings:t,ctor:"."===i[1]?H:"?"===i[1]?L:"@"===i[1]?z:k});}else v.push({type:6,index:r});}for(const i of t)h.removeAttribute(i);}if(y.test(h.tagName)){const t=h.textContent.split(n$2),i=t.length-1;if(i>0){h.textContent=s$1?s$1.emptyScript:"";for(let s=0;s<i;s++)h.append(t[s],u()),C.nextNode(),v.push({type:2,index:++r});h.append(t[i],u());}}}else if(8===h.nodeType)if(h.data===l$1)v.push({type:2,index:r});else {let t=-1;for(;-1!==(t=h.data.indexOf(n$2,t+1));)v.push({type:7,index:r}),t+=n$2.length-1;}r++;}}static createElement(t,i){const s=r.createElement("template");return s.innerHTML=t,s}}function S(t,i,s=t,e){var o,n,l,h;if(i===T)return i;let r=void 0!==e?null===(o=s._$Co)||void 0===o?void 0:o[e]:s._$Cl;const u=d(i)?void 0:i._$litDirective$;return (null==r?void 0:r.constructor)!==u&&(null===(n=null==r?void 0:r._$AO)||void 0===n||n.call(r,false),void 0===u?r=void 0:(r=new u(t),r._$AT(t,s,e)),void 0!==e?(null!==(l=(h=s)._$Co)&&void 0!==l?l:h._$Co=[])[e]=r:s._$Cl=r),void 0!==r&&(i=S(t,r._$AS(t,i.values),r,e)),i}class M{constructor(t,i){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){var i;const{el:{content:s},parts:e}=this._$AD,o=(null!==(i=null==t?void 0:t.creationScope)&&void 0!==i?i:r).importNode(s,true);C.currentNode=o;let n=C.nextNode(),l=0,h=0,u=e[0];for(;void 0!==u;){if(l===u.index){let i;2===u.type?i=new R(n,n.nextSibling,this,t):1===u.type?i=new u.ctor(n,u.name,u.strings,this,t):6===u.type&&(i=new Z(n,this,t)),this._$AV.push(i),u=e[++h];}l!==(null==u?void 0:u.index)&&(n=C.nextNode(),l++);}return C.currentNode=r,o}v(t){let i=0;for(const s of this._$AV) void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class R{constructor(t,i,s,e){var o;this.type=2,this._$AH=A,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$Cp=null===(o=null==e?void 0:e.isConnected)||void 0===o||o;}get _$AU(){var t,i;return null!==(i=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==i?i:this._$Cp}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===(null==t?void 0:t.nodeType)&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=S(this,t,i),d(t)?t===A||null==t||""===t?(this._$AH!==A&&this._$AR(),this._$AH=A):t!==this._$AH&&t!==T&&this._(t):void 0!==t._$litType$?this.g(t):void 0!==t.nodeType?this.$(t):v(t)?this.T(t):this._(t);}k(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}$(t){this._$AH!==t&&(this._$AR(),this._$AH=this.k(t));}_(t){this._$AH!==A&&d(this._$AH)?this._$AA.nextSibling.data=t:this.$(r.createTextNode(t)),this._$AH=t;}g(t){var i;const{values:s,_$litType$:e}=t,o="number"==typeof e?this._$AC(t):(void 0===e.el&&(e.el=N.createElement(P(e.h,e.h[0]),this.options)),e);if((null===(i=this._$AH)||void 0===i?void 0:i._$AD)===o)this._$AH.v(s);else {const t=new M(o,this),i=t.u(this.options);t.v(s),this.$(i),this._$AH=t;}}_$AC(t){let i=E.get(t.strings);return void 0===i&&E.set(t.strings,i=new N(t)),i}T(t){c(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const o of t)e===i.length?i.push(s=new R(this.k(u()),this.k(u()),this,this.options)):s=i[e],s._$AI(o),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,i){var s;for(null===(s=this._$AP)||void 0===s||s.call(this,false,true,i);t&&t!==this._$AB;){const i=t.nextSibling;t.remove(),t=i;}}setConnected(t){var i;void 0===this._$AM&&(this._$Cp=t,null===(i=this._$AP)||void 0===i||i.call(this,t));}}class k{constructor(t,i,s,e,o){this.type=1,this._$AH=A,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=o,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=A;}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,i=this,s,e){const o=this.strings;let n=false;if(void 0===o)t=S(this,t,i,0),n=!d(t)||t!==this._$AH&&t!==T,n&&(this._$AH=t);else {const e=t;let l,h;for(t=o[0],l=0;l<o.length-1;l++)h=S(this,e[s+l],i,l),h===T&&(h=this._$AH[l]),n||(n=!d(h)||h!==this._$AH[l]),h===A?t=A:t!==A&&(t+=(null!=h?h:"")+o[l+1]),this._$AH[l]=h;}n&&!e&&this.j(t);}j(t){t===A?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"");}}class H extends k{constructor(){super(...arguments),this.type=3;}j(t){this.element[this.name]=t===A?void 0:t;}}const I=s$1?s$1.emptyScript:"";class L extends k{constructor(){super(...arguments),this.type=4;}j(t){t&&t!==A?this.element.setAttribute(this.name,I):this.element.removeAttribute(this.name);}}class z extends k{constructor(t,i,s,e,o){super(t,i,s,e,o),this.type=5;}_$AI(t,i=this){var s;if((t=null!==(s=S(this,t,i,0))&&void 0!==s?s:A)===T)return;const e=this._$AH,o=t===A&&e!==A||t.capture!==e.capture||t.once!==e.once||t.passive!==e.passive,n=t!==A&&(e===A||o);o&&this.element.removeEventListener(this.name,this,e),n&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){var i,s;"function"==typeof this._$AH?this._$AH.call(null!==(s=null===(i=this.options)||void 0===i?void 0:i.host)&&void 0!==s?s:this.element,t):this._$AH.handleEvent(t);}}class Z{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){S(this,t);}}const B=i.litHtmlPolyfillSupport;null==B||B(N,R),(null!==(t=i.litHtmlVersions)&&void 0!==t?t:i.litHtmlVersions=[]).push("2.8.0");const D=(t,i,s)=>{var e,o;const n=null!==(e=null==s?void 0:s.renderBefore)&&void 0!==e?e:i;let l=n._$litPart$;if(void 0===l){const t=null!==(o=null==s?void 0:s.renderBefore)&&void 0!==o?o:null;n._$litPart$=l=new R(i.insertBefore(u(),t),t,void 0,null!=s?s:{});}return l._$AI(t),l};
+var t;const i=window,s$1=i.trustedTypes,e=s$1?s$1.createPolicy("lit-html",{createHTML:t=>t}):void 0,o$1="$lit$",n$2=`lit$${(Math.random()+"").slice(9)}$`,l$1="?"+n$2,h=`<${l$1}>`,r=document,u=()=>r.createComment(""),d=t=>null===t||"object"!=typeof t&&"function"!=typeof t,c=Array.isArray,v=t=>c(t)||"function"==typeof(null==t?void 0:t[Symbol.iterator]),a="[ \t\n\f\r]",f=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,_=/-->/g,m=/>/g,p=RegExp(`>|${a}(?:([^\\s"'>=/]+)(${a}*=${a}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),g=/'/g,$=/"/g,y=/^(?:script|style|textarea|title)$/i,w=t=>(i,...s)=>({_$litType$:t,strings:i,values:s}),x=w(1),T=Symbol.for("lit-noChange"),A=Symbol.for("lit-nothing"),E=new WeakMap,C=r.createTreeWalker(r,129,null,false);function P(t,i){if(!Array.isArray(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==e?e.createHTML(i):i}const V=(t,i)=>{const s=t.length-1,e=[];let l,r=2===i?"<svg>":"",u=f;for(let i=0;i<s;i++){const s=t[i];let d,c,v=-1,a=0;for(;a<s.length&&(u.lastIndex=a,c=u.exec(s),null!==c);)a=u.lastIndex,u===f?"!--"===c[1]?u=_:void 0!==c[1]?u=m:void 0!==c[2]?(y.test(c[2])&&(l=RegExp("</"+c[2],"g")),u=p):void 0!==c[3]&&(u=p):u===p?">"===c[0]?(u=null!=l?l:f,v=-1):void 0===c[1]?v=-2:(v=u.lastIndex-c[2].length,d=c[1],u=void 0===c[3]?p:'"'===c[3]?$:g):u===$||u===g?u=p:u===_||u===m?u=f:(u=p,l=void 0);const w=u===p&&t[i+1].startsWith("/>")?" ":"";r+=u===f?s+h:v>=0?(e.push(d),s.slice(0,v)+o$1+s.slice(v)+n$2+w):s+n$2+(-2===v?(e.push(void 0),i):w);}return [P(t,r+(t[s]||"<?>")+(2===i?"</svg>":"")),e]};class N{constructor({strings:t,_$litType$:i},e){let h;this.parts=[];let r=0,d=0;const c=t.length-1,v=this.parts,[a,f]=V(t,i);if(this.el=N.createElement(a,e),C.currentNode=this.el.content,2===i){const t=this.el.content,i=t.firstChild;i.remove(),t.append(...i.childNodes);}for(;null!==(h=C.nextNode())&&v.length<c;){if(1===h.nodeType){if(h.hasAttributes()){const t=[];for(const i of h.getAttributeNames())if(i.endsWith(o$1)||i.startsWith(n$2)){const s=f[d++];if(t.push(i),void 0!==s){const t=h.getAttribute(s.toLowerCase()+o$1).split(n$2),i=/([.?@])?(.*)/.exec(s);v.push({type:1,index:r,name:i[2],strings:t,ctor:"."===i[1]?H:"?"===i[1]?L:"@"===i[1]?z:k});}else v.push({type:6,index:r});}for(const i of t)h.removeAttribute(i);}if(y.test(h.tagName)){const t=h.textContent.split(n$2),i=t.length-1;if(i>0){h.textContent=s$1?s$1.emptyScript:"";for(let s=0;s<i;s++)h.append(t[s],u()),C.nextNode(),v.push({type:2,index:++r});h.append(t[i],u());}}}else if(8===h.nodeType)if(h.data===l$1)v.push({type:2,index:r});else {let t=-1;for(;-1!==(t=h.data.indexOf(n$2,t+1));)v.push({type:7,index:r}),t+=n$2.length-1;}r++;}}static createElement(t,i){const s=r.createElement("template");return s.innerHTML=t,s}}function S(t,i,s=t,e){var o,n,l,h;if(i===T)return i;let r=void 0!==e?null===(o=s._$Co)||void 0===o?void 0:o[e]:s._$Cl;const u=d(i)?void 0:i._$litDirective$;return (null==r?void 0:r.constructor)!==u&&(null===(n=null==r?void 0:r._$AO)||void 0===n||n.call(r,false),void 0===u?r=void 0:(r=new u(t),r._$AT(t,s,e)),void 0!==e?(null!==(l=(h=s)._$Co)&&void 0!==l?l:h._$Co=[])[e]=r:s._$Cl=r),void 0!==r&&(i=S(t,r._$AS(t,i.values),r,e)),i}class M{constructor(t,i){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=i;}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){var i;const{el:{content:s},parts:e}=this._$AD,o=(null!==(i=null==t?void 0:t.creationScope)&&void 0!==i?i:r).importNode(s,true);C.currentNode=o;let n=C.nextNode(),l=0,h=0,u=e[0];for(;void 0!==u;){if(l===u.index){let i;2===u.type?i=new R(n,n.nextSibling,this,t):1===u.type?i=new u.ctor(n,u.name,u.strings,this,t):6===u.type&&(i=new Z(n,this,t)),this._$AV.push(i),u=e[++h];}l!==(null==u?void 0:u.index)&&(n=C.nextNode(),l++);}return C.currentNode=r,o}v(t){let i=0;for(const s of this._$AV) void 0!==s&&(void 0!==s.strings?(s._$AI(t,s,i),i+=s.strings.length-2):s._$AI(t[i])),i++;}}class R{constructor(t,i,s,e){var o;this.type=2,this._$AH=A,this._$AN=void 0,this._$AA=t,this._$AB=i,this._$AM=s,this.options=e,this._$Cp=null===(o=null==e?void 0:e.isConnected)||void 0===o||o;}get _$AU(){var t,i;return null!==(i=null===(t=this._$AM)||void 0===t?void 0:t._$AU)&&void 0!==i?i:this._$Cp}get parentNode(){let t=this._$AA.parentNode;const i=this._$AM;return void 0!==i&&11===(null==t?void 0:t.nodeType)&&(t=i.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,i=this){t=S(this,t,i),d(t)?t===A||null==t||""===t?(this._$AH!==A&&this._$AR(),this._$AH=A):t!==this._$AH&&t!==T&&this._(t):void 0!==t._$litType$?this.g(t):void 0!==t.nodeType?this.$(t):v(t)?this.T(t):this._(t);}k(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}$(t){this._$AH!==t&&(this._$AR(),this._$AH=this.k(t));}_(t){this._$AH!==A&&d(this._$AH)?this._$AA.nextSibling.data=t:this.$(r.createTextNode(t)),this._$AH=t;}g(t){var i;const{values:s,_$litType$:e}=t,o="number"==typeof e?this._$AC(t):(void 0===e.el&&(e.el=N.createElement(P(e.h,e.h[0]),this.options)),e);if((null===(i=this._$AH)||void 0===i?void 0:i._$AD)===o)this._$AH.v(s);else {const t=new M(o,this),i=t.u(this.options);t.v(s),this.$(i),this._$AH=t;}}_$AC(t){let i=E.get(t.strings);return void 0===i&&E.set(t.strings,i=new N(t)),i}T(t){c(this._$AH)||(this._$AH=[],this._$AR());const i=this._$AH;let s,e=0;for(const o of t)e===i.length?i.push(s=new R(this.k(u()),this.k(u()),this,this.options)):s=i[e],s._$AI(o),e++;e<i.length&&(this._$AR(s&&s._$AB.nextSibling,e),i.length=e);}_$AR(t=this._$AA.nextSibling,i){var s;for(null===(s=this._$AP)||void 0===s||s.call(this,false,true,i);t&&t!==this._$AB;){const i=t.nextSibling;t.remove(),t=i;}}setConnected(t){var i;void 0===this._$AM&&(this._$Cp=t,null===(i=this._$AP)||void 0===i||i.call(this,t));}}class k{constructor(t,i,s,e,o){this.type=1,this._$AH=A,this._$AN=void 0,this.element=t,this.name=i,this._$AM=e,this.options=o,s.length>2||""!==s[0]||""!==s[1]?(this._$AH=Array(s.length-1).fill(new String),this.strings=s):this._$AH=A;}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(t,i=this,s,e){const o=this.strings;let n=false;if(void 0===o)t=S(this,t,i,0),n=!d(t)||t!==this._$AH&&t!==T,n&&(this._$AH=t);else {const e=t;let l,h;for(t=o[0],l=0;l<o.length-1;l++)h=S(this,e[s+l],i,l),h===T&&(h=this._$AH[l]),n||(n=!d(h)||h!==this._$AH[l]),h===A?t=A:t!==A&&(t+=(null!=h?h:"")+o[l+1]),this._$AH[l]=h;}n&&!e&&this.j(t);}j(t){t===A?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null!=t?t:"");}}class H extends k{constructor(){super(...arguments),this.type=3;}j(t){this.element[this.name]=t===A?void 0:t;}}const I=s$1?s$1.emptyScript:"";class L extends k{constructor(){super(...arguments),this.type=4;}j(t){t&&t!==A?this.element.setAttribute(this.name,I):this.element.removeAttribute(this.name);}}class z extends k{constructor(t,i,s,e,o){super(t,i,s,e,o),this.type=5;}_$AI(t,i=this){var s;if((t=null!==(s=S(this,t,i,0))&&void 0!==s?s:A)===T)return;const e=this._$AH,o=t===A&&e!==A||t.capture!==e.capture||t.once!==e.once||t.passive!==e.passive,n=t!==A&&(e===A||o);o&&this.element.removeEventListener(this.name,this,e),n&&this.element.addEventListener(this.name,this,t),this._$AH=t;}handleEvent(t){var i,s;"function"==typeof this._$AH?this._$AH.call(null!==(s=null===(i=this.options)||void 0===i?void 0:i.host)&&void 0!==s?s:this.element,t):this._$AH.handleEvent(t);}}class Z{constructor(t,i,s){this.element=t,this.type=6,this._$AN=void 0,this._$AM=i,this.options=s;}get _$AU(){return this._$AM._$AU}_$AI(t){S(this,t);}}const B=i.litHtmlPolyfillSupport;null==B||B(N,R),(null!==(t=i.litHtmlVersions)&&void 0!==t?t:i.litHtmlVersions=[]).push("2.8.0");const D=(t,i,s)=>{var e,o;const n=null!==(e=null==s?void 0:s.renderBefore)&&void 0!==e?e:i;let l=n._$litPart$;if(void 0===l){const t=null!==(o=null==s?void 0:s.renderBefore)&&void 0!==o?o:null;n._$litPart$=l=new R(i.insertBefore(u(),t),t,void 0,null!=s?s:{});}return l._$AI(t),l};
 
 /**
  * @license
@@ -1074,7 +1074,7 @@ class HTRNWeatherChartCardEditor extends s {
     this._config.show_time !== false;
 
 
-    return x$1`
+    return x`
       <style>
         .switch-label {
           padding-left: 14px;
@@ -1153,7 +1153,7 @@ class HTRNWeatherChartCardEditor extends s {
         @closed=${(ev) => ev.stopPropagation()}
       >
         ${this.entities.map((entity) => {
-          return x$1`<ha-list-item .value=${entity}>${entity}</ha-list-item>`;
+          return x`<ha-list-item .value=${entity}>${entity}</ha-list-item>`;
         })}
       </ha-select>
       <ha-textfield
@@ -1249,7 +1249,7 @@ class HTRNWeatherChartCardEditor extends s {
             </label>
           </div>
       <div class="switch-container">
-        ${this.hasApparentTemperature ? x$1`
+        ${this.hasApparentTemperature ? x`
           <ha-switch
             @change="${(e) => this._valueChanged(e, 'show_feels_like')}"
             .checked="${this._config.show_feels_like !== false}"
@@ -1260,7 +1260,7 @@ class HTRNWeatherChartCardEditor extends s {
         ` : ''}
       </div>
       <div class="switch-container">
-        ${this.hasDescription ? x$1`
+        ${this.hasDescription ? x`
           <ha-switch
             @change="${(e) => this._valueChanged(e, 'show_description')}"
             .checked="${this._config.show_description !== false}"
@@ -1343,7 +1343,7 @@ class HTRNWeatherChartCardEditor extends s {
             </label>
 	  </div>
       <div class="switch-container">
-        ${this.hasDewpoint ? x$1`
+        ${this.hasDewpoint ? x`
           <ha-switch
             @change="${(e) => this._valueChanged(e, 'show_dew_point')}"
             .checked="${this._config.show_dew_point !== false}"
@@ -1354,7 +1354,7 @@ class HTRNWeatherChartCardEditor extends s {
         ` : ''}
       </div>
       <div class="switch-container">
-        ${this.hasWindgustspeed ? x$1`
+        ${this.hasWindgustspeed ? x`
           <ha-switch
             @change="${(e) => this._valueChanged(e, 'show_wind_gust_speed')}"
             .checked="${this._config.show_wind_gust_speed !== false}"
@@ -1365,7 +1365,7 @@ class HTRNWeatherChartCardEditor extends s {
         ` : ''}
       </div>
       <div class="switch-container">
-        ${this.hasVisibility ? x$1`
+        ${this.hasVisibility ? x`
           <ha-switch
             @change="${(e) => this._valueChanged(e, 'show_visibility')}"
             .checked="${this._config.show_visibility !== false}"
@@ -18818,10 +18818,10 @@ updateChart({ forecasts, forecastChart } = this) {
 
   render({config, _hass, weather} = this) {
     if (!config || !_hass) {
-      return x$1``;
+      return x``;
     }
     if (!weather || !weather.attributes) {
-      return x$1`
+      return x`
         <style>
           .card {
             padding-top: ${config.title? '0px' : '16px'};
@@ -18837,7 +18837,7 @@ updateChart({ forecasts, forecastChart } = this) {
         </ha-card>
       `;
     }
-    return x$1`
+    return x`
       <style>
         ha-icon {
           color: var(--paper-item-icon-color);
@@ -18980,7 +18980,7 @@ updateChart({ forecasts, forecastChart } = this) {
 
 renderMain({ config, sun, weather, temperature, feels_like, description } = this) {
   if (config.show_main === false)
-    return x$1``;
+    return x``;
 
   const use12HourFormat = config.use_12hour_format;
   const showTime = config.show_time;
@@ -19003,8 +19003,8 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
   }
 
   const iconHtml = config.animated_icons || config.icons
-    ? x$1`<img src="${this.getWeatherIcon(weather.state, sun.state)}" alt="">`
-    : x$1`<ha-icon icon="${this.getWeatherIcon(weather.state, sun.state)}"></ha-icon>`;
+    ? x`<img src="${this.getWeatherIcon(weather.state, sun.state)}" alt="">`
+    : x`<ha-icon icon="${this.getWeatherIcon(weather.state, sun.state)}"></ha-icon>`;
 
   const updateClock = () => {
     const currentDate = new Date();
@@ -19045,7 +19045,7 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
     setInterval(updateClock, 1000);
   }
 
-  return x$1`
+  return x`
     <div class="main">
       ${iconHtml}
       <div>
@@ -19053,29 +19053,29 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
           <div @click="${(e) => this.showMoreInfo(config.temp)}">
             ${showTemperature ? x`${roundedTemperature}<span>${this.getUnit('temperature')}</span>` : ''}
           </div>  
-          ${showFeelsLike && roundedFeelsLike ? x$1`
+          ${showFeelsLike && roundedFeelsLike ? x`
             <div class="feels-like" @click="${(e) => this.showMoreInfo(config.feels_like)}">
               ${this.ll('feelsLike')}
               ${roundedFeelsLike}${this.getUnit('temperature')}
             </div>
           ` : ''}
-          ${showCurrentCondition ? x$1`
+          ${showCurrentCondition ? x`
             <div class="current-condition">
               <span>${this.ll(weather.state)}</span>
             </div>
           ` : ''}
-          ${showDescription ? x$1`
+          ${showDescription ? x`
             <div class="description">
               ${description}
             </div>
           ` : ''}
         </div>
-        ${showTime ? x$1`
+        ${showTime ? x`
           <div class="current-time">
             <div id="digital-clock"></div>
-            ${showDay ? x$1`<div class="date-text day"></div>` : ''}
-            ${showDay && showDate ? x$1` ` : ''}
-            ${showDate ? x$1`<div class="date-text date"></div>` : ''}
+            ${showDay ? x`<div class="date-text day"></div>` : ''}
+            ${showDay && showDate ? x` ` : ''}
+            ${showDate ? x`<div class="date-text date"></div>` : ''}
           </div>
         ` : ''}
       </div>
@@ -19141,7 +19141,7 @@ renderAttributes({ config, humidity, pressure, windSpeed, windDirection, sun, la
   }
 
   if (config.show_attributes == false)
-    return x$1``;
+    return x``;
 
   const showHumidity = config.show_humidity !== false;
   const showPressure = config.show_pressure !== false;
@@ -19152,20 +19152,20 @@ renderAttributes({ config, humidity, pressure, windSpeed, windDirection, sun, la
   const showWindgustspeed = config.show_wind_gust_speed == true;
   const showVisibility = config.show_visibility == true;
 
-return x$1`
+return x`
     <div class="attributes">
-      ${((showHumidity && humidity !== undefined) || (showPressure && dPressure !== undefined) || (showDewpoint && dew_point !== undefined) || (showVisibility && visibility !== undefined)) ? x$1`
+      ${((showHumidity && humidity !== undefined) || (showPressure && dPressure !== undefined) || (showDewpoint && dew_point !== undefined) || (showVisibility && visibility !== undefined)) ? x`
         <div>
-          ${showHumidity && humidity !== undefined ? x$1`
+          ${showHumidity && humidity !== undefined ? x`
             <ha-icon icon="hass:water-percent"></ha-icon> ${humidity} %<br>
           ` : ''}
-          ${showPressure && dPressure !== undefined ? x$1`
+          ${showPressure && dPressure !== undefined ? x`
             <ha-icon icon="hass:gauge"></ha-icon> ${dPressure} ${this.ll('units')[this.unitPressure]} <br>
           ` : ''}
-          ${showDewpoint && dew_point !== undefined ? x$1`
+          ${showDewpoint && dew_point !== undefined ? x`
             <ha-icon icon="hass:thermometer-water"></ha-icon> ${dew_point} ${this.weather.attributes.temperature_unit} <br>
           ` : ''}
-          ${showVisibility && visibility !== undefined ? x$1`
+          ${showVisibility && visibility !== undefined ? x`
             <ha-icon icon="hass:eye"></ha-icon> ${visibility} ${this.weather.attributes.visibility_unit} <br>
           ` : ''}
           <div @click="${(e) => this.showMoreInfo(config.option1)}">
@@ -19173,14 +19173,14 @@ return x$1`
           </div)
 	</div>
       ` : ''}
-      ${((showSun && sun !== undefined) || (typeof uv_index !== 'undefined' && uv_index !== undefined)) ? x$1`
+      ${((showSun && sun !== undefined) || (typeof uv_index !== 'undefined' && uv_index !== undefined)) ? x`
         <div>
-          ${typeof uv_index !== 'undefined' && uv_index !== undefined ? x$1`
+          ${typeof uv_index !== 'undefined' && uv_index !== undefined ? x`
             <div>
               <ha-icon icon="hass:white-balance-sunny"></ha-icon> UV: ${Math.round(uv_index * 10) / 10}
             </div>
           ` : ''}
-          ${showSun && sun !== undefined ? x$1`
+          ${showSun && sun !== undefined ? x`
             <div>
               ${this.renderSun({ sun, language })}
             </div>
@@ -19190,16 +19190,16 @@ return x$1`
           </div)
 	</div>
       ` : ''}
-      ${((showWindDirection && windDirection !== undefined) || (showWindSpeed && dWindSpeed !== undefined)) ? x$1`
+      ${((showWindDirection && windDirection !== undefined) || (showWindSpeed && dWindSpeed !== undefined)) ? x`
         <div>
-          ${showWindDirection && windDirection !== undefined ? x$1`
+          ${showWindDirection && windDirection !== undefined ? x`
             <ha-icon icon="hass:${this.getWindDirIcon(windDirection)}"></ha-icon> ${this.getWindDir(windDirection)} <br>
           ` : ''}
-          ${showWindSpeed && dWindSpeed !== undefined ? x$1`
+          ${showWindSpeed && dWindSpeed !== undefined ? x`
             <ha-icon icon="hass:weather-windy"></ha-icon>
             ${dWindSpeed} ${this.ll('units')[this.unitSpeed]} <br>
           ` : ''}
-          ${showWindgustspeed && wind_gust_speed !== undefined ? x$1`
+          ${showWindgustspeed && wind_gust_speed !== undefined ? x`
             <ha-icon icon="hass:weather-windy-variant"></ha-icon>
             ${wind_gust_speed} ${this.ll('units')[this.unitSpeed]} <br>
           ` : ''}
@@ -19214,7 +19214,7 @@ return x$1`
 
 renderSun({ sun, language, config } = this) {
   if (sun == undefined) {
-    return x$1``;
+    return x``;
   }
 
 const use12HourFormat = this.config.use_12hour_format;
@@ -19224,7 +19224,7 @@ const timeOptions = {
     minute: 'numeric'
 };
 
-  return x$1`
+  return x`
     <ha-icon icon="mdi:weather-sunset-up"></ha-icon>
       ${new Date(sun.attributes.next_rising).toLocaleTimeString(language, timeOptions)}<br>
     <ha-icon icon="mdi:weather-sunset-down"></ha-icon>
@@ -19236,10 +19236,10 @@ renderForecastConditionIcons({ config, forecastItems, sun } = this) {
   const forecast = this.forecasts ? this.forecasts.slice(0, forecastItems) : [];
 
   if (config.forecast.condition_icons === false) {
-    return x$1``;
+    return x``;
   }
 
-  return x$1`
+  return x`
     <div class="conditions" @click="${(e) => this.showMoreInfo(config.entity)}">
       ${forecast.map((item) => {
         const forecastTime = new Date(item.datetime);
@@ -19276,12 +19276,12 @@ renderForecastConditionIcons({ config, forecastItems, sun } = this) {
           const iconSrc = config.animated_icons ?
             `${this.baseIconPath}${weatherIcons[condition]}.svg` :
             `${this.config.icons}${weatherIcons[condition]}.svg`;
-          iconHtml = x$1`<img class="icon" src="${iconSrc}" alt="">`;
+          iconHtml = x`<img class="icon" src="${iconSrc}" alt="">`;
         } else {
-          iconHtml = x$1`<ha-icon icon="${this.getWeatherIcon(condition, sun.state)}"></ha-icon>`;
+          iconHtml = x`<ha-icon icon="${this.getWeatherIcon(condition, sun.state)}"></ha-icon>`;
         }
 
-        return x$1`
+        return x`
           <div class="forecast-item">
             ${iconHtml}
           </div>
@@ -19295,14 +19295,14 @@ renderWind({ config, weather, windSpeed, windDirection, forecastItems } = this) 
   const showWindForecast = config.forecast.show_wind_forecast !== false;
 
   if (!showWindForecast) {
-    return x$1``;
+    return x``;
   }
 
   const forecast = this.forecasts ? this.forecasts.slice(0, forecastItems) : [];
 
-  return x$1`
+  return x`
     <div class="wind-details">
-      ${showWindForecast ? x$1`
+      ${showWindForecast ? x`
         ${forecast.map((item) => {
           let dWindSpeed = item.wind_speed;
 
@@ -19332,7 +19332,7 @@ renderWind({ config, weather, windSpeed, windDirection, forecastItems } = this) 
             dWindSpeed = Math.round(dWindSpeed);
           }
 
-          return x$1`
+          return x`
             <div class="wind-detail">
               <ha-icon class="wind-icon" icon="hass:${this.getWindDirIcon(item.wind_bearing)}"></ha-icon>
               <span class="wind-speed">${dWindSpeed}</span>
@@ -19368,10 +19368,10 @@ renderLastUpdated() {
   const showLastUpdated = this.config.show_last_changed == true;
 
   if (!showLastUpdated) {
-    return x$1``;
+    return x``;
   }
 
-  return x$1`
+  return x`
     <div class="updated">
       <div>
         ${formattedLastUpdated}
