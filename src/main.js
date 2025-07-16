@@ -167,7 +167,7 @@ set hass(hass) {
     }
 
     this.feels_like = this.config.feels_like && hass.states[this.config.feels_like] ? hass.states[this.config.feels_like].state : this.weather.attributes.apparent_temperature;
-    this.description = this.config.description && hass.states[this.config.description] ? hass.states[this.config.description].state : this.weather.attributes.description;
+    this.description = this.config.description && hass.states[this.config.description] ? hass.states[this.config.description].attributes.forecast[0].detailed_description : this.weather.attributes.description;
 
     this.option1 = this.config.option1 in hass.states ? hass.states[this.config.option1] : null;
     this.option2 = this.config.option2 in hass.states ? hass.states[this.config.option2] : null;
@@ -271,7 +271,7 @@ measureCard() {
 
       let newWidth = (fontSize + 20) * Math.min(this.forecasts.length, this.forecastItems);
       if (newWidth < card.offsetWidth){
-        newWidth = card.offsetWidth
+        newWidth = card.offsetWidth;
       } else {
         forecastContainer.style.width     = `${newWidth}px`;
         forecastContainer.style.overflowX = 'scroll';
@@ -501,11 +501,11 @@ drawChart({ config, language, weather, forecastItems } = this) {
   }
   var tempUnit = this._hass.config.unit_system.temperature;
   var lengthUnit = this._hass.config.unit_system.length;
-  if (config.forecast.precipitation_type === 'probability') {
-    var precipUnit = '%';
-  } else {
+  //if (config.forecast.precipitation_type === 'probability') {
+  //  var precipUnit = '%';
+  //} else {
     var precipUnit = lengthUnit === 'km' ? this.ll('units')['mm'] : this.ll('units')['in'];
-  }
+  //}
   const data = this.computeForecastData();
 
   var style = getComputedStyle(document.body);
@@ -528,7 +528,7 @@ drawChart({ config, language, weather, forecastItems } = this) {
     if (config.forecast.type === 'hourly') {
       precipMax = lengthUnit === 'km' ? 4 : 1;
     } else {
-      precipMax = lengthUnit === 'km' ? 20 : 1;
+      precipMax = drawchart === 'km' ? 20 : 1;
     }
   }
 
@@ -575,20 +575,25 @@ drawChart({ config, language, weather, forecastItems } = this) {
       formatter: function (value, context) {
         const precipitationType = config.forecast.precipitation_type;
 
-        const rainfall = context.dataset.data[context.dataIndex];
+        //const rainfall = context.dataset.data[context.dataIndex];
+        const rainfall = data.forecast[context.dataIndex].precipitation;
         const probability = data.forecast[context.dataIndex].precipitation_probability;
 
         let formattedValue;
         if (precipitationType === 'rainfall') {
           if (probability !== undefined && probability !== null && config.forecast.show_probability) {
-	    formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)} ${precipUnit}\n${Math.round(probability)}%`;
+            formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)} ${precipUnit}\n${Math.round(probability)}%`;
           } else {
             formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)}${precipUnit}`;
           }
         } else {
-          //formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)}${precipUnit}`;
-          formattedValue = `${Math.round(rainfall)}${precipUnit}`;
+          if (rainfall !== undefined && rainfall !== null && config.forecast.show_probability) {
+            formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)} ${precipUnit}\n${Math.round(probability)}%`;
+          } else {
+            formattedValue = `${Math.round(probability)}%`;
+          }
         }
+
 
         formattedValue = formattedValue.replace('\n', '\n\n');
 
@@ -680,7 +685,8 @@ drawChart({ config, language, weather, forecastItems } = this) {
 
                   var time = dateObj.toLocaleTimeString(language, timeFormatOptions);
 
-                  if (dateObj.getHours() === 0 && dateObj.getMinutes() === 0 && config.forecast.type === 'hourly') {
+                  //if (dateObj.getHours() === 0 && dateObj.getMinutes() === 0 && config.forecast.type === 'hourly') {
+                  if (config.forecast.type === 'hourly') {
                       var date = dateObj.toLocaleString(language, { weekday: 'short' }).toUpperCase();
                       time = time.replace('a.m.', 'AM').replace('p.m.', 'PM');
                       return [date, time];
@@ -985,9 +991,9 @@ updateChart({ forecasts, forecastChart } = this) {
           font-weight: 400;
         }
         .main .description {
-	  font-style: italic;
+          font-style: italic;
           font-size: 13px;
-          margin-top: 5px;
+          margin-left: 20px;
           font-weight: 400;
         }
         .updated {
@@ -1087,9 +1093,11 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
       ${iconHtml}
       <div>
         <div>
-          ${showTemperature ? html`${roundedTemperature}<span>${this.getUnit('temperature')}</span>` : ''}
+          <div @click="${(e) => this.showMoreInfo(config.temp)}">
+            ${showTemperature ? x`${roundedTemperature}<span>${this.getUnit('temperature')}</span>` : ''}
+          </div>  
           ${showFeelsLike && roundedFeelsLike ? html`
-            <div class="feels-like">
+            <div class="feels-like" @click="${(e) => this.showMoreInfo(config.feels_like)}">
               ${this.ll('feelsLike')}
               ${roundedFeelsLike}${this.getUnit('temperature')}
             </div>
@@ -1203,7 +1211,9 @@ return html`
           ${showVisibility && visibility !== undefined ? html`
             <ha-icon icon="hass:eye"></ha-icon> ${visibility} ${this.weather.attributes.visibility_unit} <br>
           ` : ''}
-          ${ option1 ? html`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
+          <div @click="${(e) => this.showMoreInfo(config.option1)}">
+            ${ option1 ? x`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
+          </div)
 	</div>
       ` : ''}
       ${((showSun && sun !== undefined) || (typeof uv_index !== 'undefined' && uv_index !== undefined)) ? html`
@@ -1218,7 +1228,9 @@ return html`
               ${this.renderSun({ sun, language })}
             </div>
           ` : ''}
-          ${ option2 ? html`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
+          <div @click="${(e) => this.showMoreInfo(config.option2)}">
+            ${ option2 ? x`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
+          </div)
 	</div>
       ` : ''}
       ${((showWindDirection && windDirection !== undefined) || (showWindSpeed && dWindSpeed !== undefined)) ? html`
@@ -1234,7 +1246,9 @@ return html`
             <ha-icon icon="hass:weather-windy-variant"></ha-icon>
             ${wind_gust_speed} ${this.ll('units')[this.unitSpeed]} <br>
           ` : ''}
-          ${ option3 ? html`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
+         <div @click="${(e) => this.showMoreInfo(config.option3)}">
+            ${ option3 ? x`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
+          </div)
 	</div>
       ` : ''}
     </div>
