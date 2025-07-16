@@ -289,32 +289,27 @@ measureCard() {
 
 ll(str) {
   const selectedLocale = this.config.locale || this.language || 'en';
-
-  if (locale[selectedLocale] === undefined) {
-    return locale.en[str];
-  }
-
-  return locale[selectedLocale][str];
+  return locale[selectedLocale]?.[str] || locale.en[str] || str;
 }
 
-  getCardSize() {
-    return 4;
-  }
+getCardSize() {
+  return 4;
+}
 
-  getUnit(unit) {
-    return this._hass.config.unit_system[unit] || '';
-  }
+getUnit(unit) {
+  return this._hass.config.unit_system[unit] || '';
+}
 
-  getWeatherIcon(condition, sun) {
-    if (this.config.animated_icons === true) {
-      const iconName = sun === 'below_horizon' ? weatherIconsNight[condition] : weatherIconsDay[condition];
-      return `${this.baseIconPath}${iconName}.svg`;
-    } else if (this.config.icons) {
-      const iconName = sun === 'below_horizon' ? weatherIconsNight[condition] : weatherIconsDay[condition];
-      return `${this.config.icons}${iconName}.svg`;
-    }
-    return weatherIcons[condition];
+getWeatherIcon(condition, sun) {
+  if (this.config.animated_icons === true) {
+    const iconName = sun === 'below_horizon' ? weatherIconsNight[condition] : weatherIconsDay[condition];
+    return `${this.baseIconPath}${iconName}.svg`;
+  } else if (this.config.icons) {
+    const iconName = sun === 'below_horizon' ? weatherIconsNight[condition] : weatherIconsDay[condition];
+    return `${this.config.icons}${iconName}.svg`;
   }
+  return weatherIcons[condition];
+}
 
 getWindDirIcon(deg) {
   if (typeof deg === 'number') {
