@@ -1094,7 +1094,7 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
       <div>
         <div>
           <div @click="${(e) => this.showMoreInfo(config.temp)}">
-            ${showTemperature ? x`${roundedTemperature}<span>${this.getUnit('temperature')}</span>` : ''}
+            ${showTemperature ? html`${roundedTemperature}<span>${this.getUnit('temperature')}</span>` : ''}
           </div>  
           ${showFeelsLike && roundedFeelsLike ? html`
             <div class="feels-like" @click="${(e) => this.showMoreInfo(config.feels_like)}">
@@ -1212,7 +1212,7 @@ return html`
             <ha-icon icon="hass:eye"></ha-icon> ${visibility} ${this.weather.attributes.visibility_unit} <br>
           ` : ''}
           <div @click="${(e) => this.showMoreInfo(config.option1)}">
-            ${ option1 ? x`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
+            ${ option1 ? html`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
           </div)
 	</div>
       ` : ''}
@@ -1229,7 +1229,7 @@ return html`
             </div>
           ` : ''}
           <div @click="${(e) => this.showMoreInfo(config.option2)}">
-            ${ option2 ? x`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
+            ${ option2 ? html`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
           </div)
 	</div>
       ` : ''}
@@ -1247,7 +1247,7 @@ return html`
             ${wind_gust_speed} ${this.ll('units')[this.unitSpeed]} <br>
           ` : ''}
          <div @click="${(e) => this.showMoreInfo(config.option3)}">
-            ${ option3 ? x`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
+            ${ option3 ? html`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
           </div)
 	</div>
       ` : ''}
