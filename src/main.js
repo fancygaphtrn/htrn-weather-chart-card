@@ -1107,12 +1107,13 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
               <span>${this.ll(weather.state)}</span>
             </div>
           ` : ''}
-          ${showDescription ? html`
-            <div class="description">
-              ${description}
-            </div>
-          ` : ''}
         </div>
+        </div>
+        ${showDescription ? html`
+          <div class="description">
+            ${description}
+          </div>
+        ` : ''}
         ${showTime ? html`
           <div class="current-time">
             <div id="digital-clock"></div>
