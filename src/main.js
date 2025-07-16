@@ -501,11 +501,11 @@ drawChart({ config, language, weather, forecastItems } = this) {
   }
   var tempUnit = this._hass.config.unit_system.temperature;
   var lengthUnit = this._hass.config.unit_system.length;
-  //if (config.forecast.precipitation_type === 'probability') {
-  //  var precipUnit = '%';
-  //} else {
+  if (config.forecast.precipitation_type === 'probability') {
+    var precipUnit = '%';
+  } else {
     var precipUnit = lengthUnit === 'km' ? this.ll('units')['mm'] : this.ll('units')['in'];
-  //}
+  }
   const data = this.computeForecastData();
 
   var style = getComputedStyle(document.body);
