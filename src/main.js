@@ -269,17 +269,17 @@ measureCard() {
       const conditionsContainer = this.shadowRoot.querySelector('.conditions');
       const windContainer       = this.shadowRoot.querySelector('.wind-details');
 
-      let newWidth = (fontSize + 20) * Math.min(this.forecasts.length, this.forecastItems);
+      let newWidth = (fontSize * 3) * Math.min(this.forecasts.length+1, this.forecastItems);
       if (newWidth < card.offsetWidth){
         newWidth = card.offsetWidth;
       } else {
         forecastContainer.style.width     = `${newWidth}px`;
         forecastContainer.style.overflowX = 'scroll';
         
-        chartContainer.style.width      = `${newWidth + (fontSize * 2.5) + 5}px`;
-        conditionsContainer.style.width = `${newWidth + (fontSize * 2)}px`;
-        windContainer.style.width       = `${newWidth + (fontSize * 2)}px`;
-      }
+        chartContainer.style.width      = `${newWidth}px`;
+        conditionsContainer.style.width = `${newWidth-20}px`;
+        windContainer.style.width       = `${newWidth-20}px`;
+       }
     }
   } else {  
     this.forecastItems = Math.round((card.offsetWidth) / (fontSize + 20)-1);
@@ -651,7 +651,10 @@ drawChart({ config, language, weather, forecastItems } = this) {
       maintainAspectRatio: false,
       animation: config.forecast.disable_animation === true ? { duration: 0 } : {},
       layout: {
+        autoPadding: false,
         padding: {
+          left: 10,
+          right: 10,
           bottom: 10
         },
       },
@@ -931,7 +934,7 @@ updateChart({ forecasts, forecastChart } = this) {
           display: flex;
           justify-content: space-around;
           align-items: center;
-          padding: 0px 0px 0px ${config.forecast.labels_font_size / 2}px;
+          padding: 0px 10px 0px 10px;
           cursor: pointer;
         }
         .forecast-item {
@@ -945,7 +948,7 @@ updateChart({ forecasts, forecastChart } = this) {
           justify-content: space-around;
           align-items: center;
           font-weight: 300;
-          padding: 0px 0px 0px 10px;
+          padding: 0px 10px 0px 10px;
         }
         .wind-detail {
           display: flex;
@@ -960,10 +963,10 @@ updateChart({ forecasts, forecastChart } = this) {
         .wind-icon {
           margin-right: 1px;
           position: relative;
-	  bottom: 1px;
+          bottom: 1px;
         }
         .wind-speed {
-          font-size: 11px;
+          font-size: ${config.forecast.labels_font_size}px;
           margin-right: 1px;
         }
         .wind-unit {
