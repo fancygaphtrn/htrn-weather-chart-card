@@ -1,3 +1,5 @@
 {
-  "name": "Weather Chart Card from Htrn"
+  "name": "Weather Chart Card",
+  "render_readme": true,
+  "filename": "dist/weather-chart-card.js"
 }
