@@ -19345,7 +19345,10 @@ renderWind({ config, weather, windSpeed, windDirection, forecastItems } = this) 
 }
 
 renderLastUpdated() {
-  const lastUpdatedString = this.weather.last_changed;
+  if (!this.config.show_last_changed) {
+    return x``;
+  }
+  const lastUpdatedString = this.weather.last_updated;
   const lastUpdatedTimestamp = new Date(lastUpdatedString).getTime();
   const currentTimestamp = Date.now();
   const timeDifference = currentTimestamp - lastUpdatedTimestamp;
@@ -19365,11 +19368,7 @@ renderLastUpdated() {
     formattedLastUpdated = formatter.format(-minutesAgo, 'minute');
   }
 
-  const showLastUpdated = this.config.show_last_changed == true;
-
-  if (!showLastUpdated) {
-    return x``;
-  }
+  this.config.show_last_changed == true;
 
   return x`
     <div class="updated">
