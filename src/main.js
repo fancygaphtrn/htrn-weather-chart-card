@@ -1129,6 +1129,8 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
 renderAttributes({ config, humidity, pressure, windSpeed, windDirection, sun, language, uv_index, dew_point, wind_gust_speed, visibility, option1, option2, option3 } = this) {
   let dWindSpeed = windSpeed;
   let dPressure = pressure;
+  let dhumidity = Number(humidity).toFixed(0);
+  let dDewpoint = Number(dew_point).toFixed(1);
 
   if (this.unitSpeed !== this.weather.attributes.wind_speed_unit) {
     if (this.unitSpeed === 'm/s') {
@@ -1200,13 +1202,15 @@ return html`
       ${((showHumidity && humidity !== undefined) || (showPressure && dPressure !== undefined) || (showDewpoint && dew_point !== undefined) || (showVisibility && visibility !== undefined)) ? html`
         <div>
           ${showHumidity && humidity !== undefined ? html`
-            <ha-icon icon="hass:water-percent"></ha-icon> ${humidity} %<br>
+          <div @click="${(e) => this.showMoreInfo(config.humid)}">
+            <ha-icon icon="hass:water-percent"></ha-icon> ${dhumidity} %<br>
+          </div>
           ` : ''}
           ${showPressure && dPressure !== undefined ? html`
             <ha-icon icon="hass:gauge"></ha-icon> ${dPressure} ${this.ll('units')[this.unitPressure]} <br>
           ` : ''}
           ${showDewpoint && dew_point !== undefined ? html`
-            <ha-icon icon="hass:thermometer-water"></ha-icon> ${dew_point} ${this.weather.attributes.temperature_unit} <br>
+            <ha-icon icon="hass:thermometer-water"></ha-icon> ${dDewpoint} ${this.weather.attributes.temperature_unit} <br>
           ` : ''}
           ${showVisibility && visibility !== undefined ? html`
             <ha-icon icon="hass:eye"></ha-icon> ${visibility} ${this.weather.attributes.visibility_unit} <br>
