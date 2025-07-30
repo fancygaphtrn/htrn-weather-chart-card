@@ -998,6 +998,7 @@ updateChart({ forecasts, forecastChart } = this) {
           align-items: center;
           font-weight: 300;
           padding: 0px 10px 0px 10px;
+          cursor: pointer;
         }
         .wind-detail {
           display: flex;
@@ -1397,7 +1398,7 @@ renderWind({ config, weather, windSpeed, windDirection, forecastItems } = this) 
   const forecast = this.forecasts ? this.forecasts.slice(0, forecastItems) : [];
 
   return html`
-    <div class="wind-details">
+    <div class="wind-details" @click="${(e) => this.showMoreInfo(config.entity)}">
       ${showWindForecast ? html`
         ${forecast.map((item) => {
           let dWindSpeed = item.wind_speed;
