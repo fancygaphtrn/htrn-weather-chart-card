@@ -18873,12 +18873,39 @@ updateChart({ forecasts, forecastChart } = this) {
           font-size: 18px;
           color: var(--secondary-text-color);
         }
+        .main .temp {
+           cursor: pointer;
+        }
+        .main .feels-like {
+          font-size: 13px;
+          margin-top: 5px;
+          font-weight: 400;
+          cursor: pointer;          
+        }
+        .main .description {
+          font-style: italic;
+          font-size: 13px;
+          margin-left: 20px;
+          font-weight: 400;
+        }
         .attributes {
           display: flex;
           justify-content: space-between;
           align-items: center;
           margin-bottom: 6px;
-	        font-weight: 300;
+          font-weight: 300;
+        }
+        .attributes .humidity {
+           cursor: pointer;
+        }
+        .attributes .option1 {
+           cursor: pointer;
+        }
+        .attributes .option2 {
+           cursor: pointer;
+        }
+        .attributes .option3 {
+           cursor: pointer;
         }
         .chart-container {
           position: relative;
@@ -18940,17 +18967,6 @@ updateChart({ forecasts, forecastChart } = this) {
         .date-text {
           font-size: ${config.day_date_size}px;
           color: var(--secondary-text-color);
-        }
-        .main .feels-like {
-          font-size: 13px;
-          margin-top: 5px;
-          font-weight: 400;
-        }
-        .main .description {
-          font-style: italic;
-          font-size: 13px;
-          margin-left: 20px;
-          font-weight: 400;
         }
         .updated {
           font-size: 13px;
@@ -19049,7 +19065,7 @@ renderMain({ config, sun, weather, temperature, feels_like, description } = this
       ${iconHtml}
       <div>
         <div>
-          <div @click="${(e) => this.showMoreInfo(config.temp)}">
+          <div  class="temp" @click="${(e) => this.showMoreInfo(config.temp)}">
             ${showTemperature ? x`${roundedTemperature}<span>${this.getUnit('temperature')}</span>` : ''}
           </div>  
           ${showFeelsLike && roundedFeelsLike ? x`
@@ -19154,12 +19170,12 @@ renderAttributes({ config, humidity, pressure, windSpeed, windDirection, sun, la
   const showWindgustspeed = config.show_wind_gust_speed == true;
   const showVisibility = config.show_visibility == true;
 
-return x`
+  return x`
     <div class="attributes">
       ${((showHumidity && humidity !== undefined) || (showPressure && dPressure !== undefined) || (showDewpoint && dew_point !== undefined) || (showVisibility && visibility !== undefined)) ? x`
         <div>
           ${showHumidity && humidity !== undefined ? x`
-          <div @click="${(e) => this.showMoreInfo(config.humid)}">
+          <div class="humidity" @click="${(e) => this.showMoreInfo(config.humid)}">
             <ha-icon icon="hass:water-percent"></ha-icon> ${dhumidity} %<br>
           </div>
           ` : ''}
@@ -19172,7 +19188,7 @@ return x`
           ${showVisibility && visibility !== undefined ? x`
             <ha-icon icon="hass:eye"></ha-icon> ${visibility} ${this.weather.attributes.visibility_unit} <br>
           ` : ''}
-          <div @click="${(e) => this.showMoreInfo(config.option1)}">
+          <div class="option1" @click="${(e) => this.showMoreInfo(config.option1)}">
             ${ option1 ? x`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
           </div)
 	</div>
@@ -19189,7 +19205,7 @@ return x`
               ${this.renderSun({ sun, language })}
             </div>
           ` : ''}
-          <div @click="${(e) => this.showMoreInfo(config.option2)}">
+          <div class="option2" @click="${(e) => this.showMoreInfo(config.option2)}">
             ${ option2 ? x`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
           </div)
 	</div>
@@ -19207,7 +19223,7 @@ return x`
             <ha-icon icon="hass:weather-windy-variant"></ha-icon>
             ${wind_gust_speed} ${this.ll('units')[this.unitSpeed]} <br>
           ` : ''}
-         <div @click="${(e) => this.showMoreInfo(config.option3)}">
+         <div class="option3" @click="${(e) => this.showMoreInfo(config.option3)}">
             ${ option3 ? x`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
           </div)
 	</div>
@@ -19221,12 +19237,12 @@ renderSun({ sun, language, config } = this) {
     return x``;
   }
 
-const use12HourFormat = this.config.use_12hour_format;
-const timeOptions = {
+  const use12HourFormat = this.config.use_12hour_format;
+  const timeOptions = {
     hour12: use12HourFormat,
     hour: 'numeric',
     minute: 'numeric'
-};
+  };
 
   return x`
     <ha-icon icon="mdi:weather-sunset-up"></ha-icon>
