@@ -18907,6 +18907,27 @@ updateChart({ forecasts, forecastChart } = this) {
         .attributes .option3 {
            cursor: pointer;
         }
+                .attributes .press {
+           cursor: pointer;
+        }
+        .attributes .dew_point {
+           cursor: pointer;
+        }
+        .attributes .visibility {
+           cursor: pointer;
+        }
+        .attributes .uv {
+           cursor: pointer;
+        }
+        .attributes .winddir {
+           cursor: pointer;
+        }
+        .attributes .windspeed {
+           cursor: pointer;
+        }
+        .attributes .wind_gust_speed {
+           cursor: pointer;
+        }
         .chart-container {
           position: relative;
           height: ${config.forecast.chart_height}px;
@@ -19180,23 +19201,29 @@ renderAttributes({ config, humidity, pressure, windSpeed, windDirection, sun, la
           </div>
           ` : ''}
           ${showPressure && dPressure !== undefined ? x`
+          <div class="press" @click="${(e) => this.showMoreInfo(config.press)}">
             <ha-icon icon="hass:gauge"></ha-icon> ${dPressure} ${this.ll('units')[this.unitPressure]} <br>
+          </div>
           ` : ''}
           ${showDewpoint && dew_point !== undefined ? x`
+          <div class="dew_point" @click="${(e) => this.showMoreInfo(config.dew_point)}">
             <ha-icon icon="hass:thermometer-water"></ha-icon> ${dDewpoint} ${this.weather.attributes.temperature_unit} <br>
-          ` : ''}
+          </div>
+	  ` : ''}
           ${showVisibility && visibility !== undefined ? x`
+          <div class="visibility" @click="${(e) => this.showMoreInfo(config.visibility)}">
             <ha-icon icon="hass:eye"></ha-icon> ${visibility} ${this.weather.attributes.visibility_unit} <br>
-          ` : ''}
+          </div>
+	  ` : ''}
           <div class="option1" @click="${(e) => this.showMoreInfo(config.option1)}">
             ${ option1 ? x`${option1.attributes.friendly_name} ${option1.state} ${option1.attributes.unit_of_measurement}` : ''}
           </div)
-	</div>
+       </div>
       ` : ''}
       ${((showSun && sun !== undefined) || (typeof uv_index !== 'undefined' && uv_index !== undefined)) ? x`
         <div>
           ${typeof uv_index !== 'undefined' && uv_index !== undefined ? x`
-            <div>
+            <div class="uv" @click="${(e) => this.showMoreInfo(config.uv)}">
               <ha-icon icon="hass:white-balance-sunny"></ha-icon> UV: ${Math.round(uv_index * 10) / 10}
             </div>
           ` : ''}
@@ -19208,25 +19235,31 @@ renderAttributes({ config, humidity, pressure, windSpeed, windDirection, sun, la
           <div class="option2" @click="${(e) => this.showMoreInfo(config.option2)}">
             ${ option2 ? x`${option2.attributes.friendly_name} ${option2.state} ${option2.attributes.unit_of_measurement}` : ''}
           </div)
-	</div>
+      </div>
       ` : ''}
       ${((showWindDirection && windDirection !== undefined) || (showWindSpeed && dWindSpeed !== undefined)) ? x`
         <div>
           ${showWindDirection && windDirection !== undefined ? x`
+           <div class="winddir" @click="${(e) => this.showMoreInfo(config.winddir)}">
             <ha-icon icon="hass:${this.getWindDirIcon(windDirection)}"></ha-icon> ${this.getWindDir(windDirection)} <br>
-          ` : ''}
+          </div>
+	  ` : ''}
           ${showWindSpeed && dWindSpeed !== undefined ? x`
+           <div class="windspeed" @click="${(e) => this.showMoreInfo(config.windspeed)}">
             <ha-icon icon="hass:weather-windy"></ha-icon>
             ${dWindSpeed} ${this.ll('units')[this.unitSpeed]} <br>
-          ` : ''}
+           </div>
+	  ` : ''}
           ${showWindgustspeed && wind_gust_speed !== undefined ? x`
+           <div class="wind_gust_speed" @click="${(e) => this.showMoreInfo(config.wind_gust_speed)}">
             <ha-icon icon="hass:weather-windy-variant"></ha-icon>
             ${wind_gust_speed} ${this.ll('units')[this.unitSpeed]} <br>
-          ` : ''}
+           </div>
+	  ` : ''}
          <div class="option3" @click="${(e) => this.showMoreInfo(config.option3)}">
             ${ option3 ? x`${option3.attributes.friendly_name} ${option3.state} ${option3.attributes.unit_of_measurement}` : ''}
           </div)
-	</div>
+      </div>
       ` : ''}
     </div>
 `;
