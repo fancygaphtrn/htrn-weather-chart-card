@@ -1,4 +1,4 @@
-<h1 align="center">Weather Chart Card</h1>
+<h1 align="center">HTRN Weather Chart Card</h1>
 <h2 align="center">Updated to support twice_daily forecasts along with option display of sensors in the attributes section.<br/>
 Setting number of forecasts to a high number will make the forecast area horiz. scrollable so many forcasts can be seen.   Useful for hourly forecasts.
 </h2>
