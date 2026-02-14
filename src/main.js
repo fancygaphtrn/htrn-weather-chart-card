@@ -468,7 +468,7 @@ autoscroll() {
       this.autoscrollTimeout = null;
       this.updateChart();
       //drawChartOncePerHour();
-	  UpdateChartOncePerHour();
+      updateChartOncePerHour();
     }, nextHour - now);
   };
 
