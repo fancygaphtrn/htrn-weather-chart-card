@@ -21,7 +21,7 @@ lovelace:
   resources:
     mode:yaml
     - type: module
-      url: /local/htrn-weather-chart-card.js?ver=1.00
+      url: /local/htrn-weather-chart-card.js
 ```
 
 #### Configuration variables:
