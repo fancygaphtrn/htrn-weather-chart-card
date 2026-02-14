@@ -18428,12 +18428,13 @@ autoscroll() {
         now.getFullYear(),
         now.getMonth(),
         now.getDate(),
-        now.getHours()+1,
+        now.getHours()+1
     );
     this.autoscrollTimeout = setTimeout(() => {
       this.autoscrollTimeout = null;
       this.updateChart();
-      drawChartOncePerHour();
+      //drawChartOncePerHour();
+	  UpdateChartOncePerHour();
     }, nextHour - now);
   };
 
@@ -18547,8 +18548,15 @@ drawChart({ config, language, weather, forecastItems } = this) {
             formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)}${precipUnit}`;
           }
         } else {
-          if (rainfall !== undefined && rainfall !== null && config.forecast.show_probability) {
-            formattedValue = `${rainfall > 9 ? Math.round(rainfall) : rainfall.toFixed(1)}${precipUnit}\n${Math.round(probability)}${probabilityUnit}`;
+          if (rainfall !== undefined && rainfall !== null && rainfall > 0 && config.forecast.show_probability) {
+            if (rainfall > 9) {
+              formattedValue = Math.round(rainfall);
+            } else if (rainfall >= 1){
+              formattedValue = rainfall.toFixed(1);
+            } else {
+              formattedValue = rainfall.toFixed(2).replace(/^0\./, '.');
+            }
+            formattedValue = `${formattedValue}${precipUnit}\n${Math.round(probability)}${probabilityUnit}`;
           } else {
             formattedValue = `${Math.round(probability)}${probabilityUnit}`;
           }
